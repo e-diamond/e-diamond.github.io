@@ -1,0 +1,109 @@
+---
+layout: default
+libs:
+    - p5js
+scripts:
+    - assets/js/diamond-cubic/draw.js
+---
+
+<canvas id="bg-canvas">
+    A rotating ball-and-stick model of a diamond crystal.
+</canvas>
+<noscript>
+    <style>
+        #bg-canvas {
+            background-image: url(assets/img/diamond-cubic.png);
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</noscript>
+
+<main class="home-main" id="main">
+    <section class="home-section" id="about-me">
+        <div class="h-card" id="personal-info">
+            <img class="u-photo" id="profile-pic" src="assets/img/profile-pic.jpg" alt="A picture of me behind a model of a ball-and-stick model of a diamond crystal.">
+            <div id="personal-links">
+                <h1 class="p-name">{{ site.title }}</h1>
+                <p id="location">
+                    {%- include_relative assets/img/location.svg -%}
+                    <span class="p-country-name">United Kingdom</span>
+                </p>
+                {% include social-links.html username=true %}
+            </div>
+        </div>
+        <div id="personal-summary">
+            {% capture about %}{% include_relative about-me.md %}{% endcapture %}
+            {{ about | markdownify }}
+        </div>
+    </section>
+    <section class="home-section" id="projects">
+        <h2>Projects</h2>
+        <ul>
+            <li class="project-item" id="stem-at-6am">
+                <div class="project-desc">
+                    <h3>
+                        <a href="https://stemat6am.com">STEM@6AM</a>
+                    </h3>
+                    <p><em>Science so simple, you'll understand it before your morning coffee!</em></p>
+                    <p>This is a website where I write about science and maths topics for a general audience.
+                        Be sure to check out my article on 
+                        <a href="https://stemat6am.com/physics/quantum-mechanics/intro-to-quantum-mechanics">the history of quantum mechanics</a>!
+                    </p>
+                </div>
+                <img src="assets/img/stem-at-6am-logo.png" alt="">
+            </li>
+        </ul>
+    </section>
+    <section class="home-section" id="featured-posts">
+        <h2>Featured Posts</h2>
+        <ul>
+            {% for post in site.posts %}
+                <li class="featured-post" 
+                    style="background: linear-gradient(var(--img-tint), var(--img-tint)), 
+                                        url('{{ post.image }}');
+                            background-size: cover;">
+                    <!-- scoped style for when supported by firefox -->
+                    <!-- <style>
+                        @scope {
+                            :scope {
+                                background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
+                                            url("{{ post.image }}");
+                                background-size: cover;
+                            }
+                        }
+                    </style> -->
+                    <h3>
+                        <a class="u-url" href="{{ post.url }}">{{ post.title }}</a>
+                    </h3>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+
+<button id="play-pause-btn" class="js-only" type="button" title="Pause Animation"
+        aria-controls="bg-canvas">
+    <svg viewBox="-140 100 800 800" aria-hidden="true">
+        <path id="play-pause-icon" d="M0 832h192V192H0V832zM320 192v640h192V192H320z"></path>
+    </svg>
+</button>
+
+<div id="js-control-panel" class="js-control-panel js-only">
+    <div class="js-control">
+        <label for="hide-content" id="hide-content-label" class="toggle-label">
+            <span>Hide content</span>
+            <input type="checkbox" id="hide-content"
+                   role="switch">
+            <div class="toggle"></div>
+        </label>
+    </div>
+
+    <div class="js-control">
+        <fieldset class="layer-btn-container">
+            <legend>Add Layers</legend>
+            <button type="button" id="remove-layer" title="Remove Layer">-</button>
+            <button type="button" id="add-layer" title="Add Layer">+</button>
+        </fieldset>
+    </div>
+</div>

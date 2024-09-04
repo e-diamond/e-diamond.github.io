@@ -1,0 +1,9 @@
+---
+layout: default
+--- 
+
+<main>
+    <h1 class="tagpage-title p-name">Tagged: <span class="header-tag">{{ page.title }}</span></h1>
+
+    {%- include postcards.html posts=page.tagged_posts -%}
+</main>

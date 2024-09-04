@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<!-- <div class="content-wrapper"> -->
+    <main class="post-main h-entry" id="main">
+        <header class="post-header">
+            <img class="u-photo" src="{{ page.image | absolute_url }}" alt="">
+            <h1 class="txt-accent p-name">{{ page.title }}</h1>
+        </header>
+
+        <aside class="post-details">
+            <div class="author-time">
+                <address class="p-author h-card">
+                    <a href="{{ site.url }}" class="u-url p-name" rel="author">{{ page.author }}</a>
+                </address>
+                <span class="separator">•</span>
+                <time pubdate class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %B %Y"}}</time>
+            </div>
+
+            {%- include tags.html tags=page.tags -%}
+        </aside>
+
+        <div class="post-content e-content">
+            {{ content }}
+        </div>
+
+        <footer class="post-footer">
+            <div id="next-post" class="post-nav">
+                {% unless page.next == nil %}
+                    <span><< Next Post</span><br/>
+                    <a href="{{ page.next.url }}" rel="next">{{ page.next.title }}</a>
+                {% endunless %}
+            </div>
+            <div id="prev-post" class="post-nav">
+                {% unless page.previous == nil %}
+                    <span>Previous Post >></span><br/>
+                    <a href="{{ page.previous.url }}" rel="prev">{{ page.previous.title }}</a>
+                {% endunless %}
+            </div>
+        </footer>
+    </main>
+<!-- </div> -->

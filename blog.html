@@ -1,0 +1,35 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<!-- <div class="content-wrapper" id="blog-content"> -->
+    <main id="main" class="blog-main h-feed">
+        <header class="blog-header">
+            <h1 class="p-name txt-accent">Blog</h1>
+            <p class="p-summary">
+                This is a list of all my <strong>long-form posts</strong>.
+                It also has an <a href="{{ "feed.xml" | absolute_url }}">RSS feed</a> 
+                (<em><a href="https://aboutfeeds.com">What's RSS?</a></em>).
+            </p>
+        </header>
+
+        <aside class="tag-cloud">
+
+            <details open>
+
+                <summary class="tag-cloud-title">
+                    All Tags
+                </summary>
+
+                {%- include tags.html tags=site.tags count=true -%}
+            
+            </details>
+
+        </aside>
+
+        {%- include postcards.html posts=site.posts -%}
+
+    </main>
+<!-- </div> -->

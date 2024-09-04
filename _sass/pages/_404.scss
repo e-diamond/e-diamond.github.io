@@ -1,0 +1,29 @@
+.wrapper-404 {
+    margin: auto;
+}
+
+.main-404 {
+    max-width: 70ch;
+    // margin: auto;
+    // margin: minmax(1rem, auto);
+    margin: 1rem;
+    padding: 1rem;
+    @extend %border;
+
+    text-align: center;
+    h1 {
+        display: inline-block;
+        font-size: 4rem;
+    }
+
+    p, a {
+        font-size: 1.5rem;
+    }
+    strong {
+        font-size: 2rem;
+    }
+
+    a {
+        @extend %pretty-link;
+    }
+}

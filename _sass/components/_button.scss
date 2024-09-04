@@ -1,0 +1,34 @@
+button {
+    $shadow: 5px;
+    $movement: 4px;
+
+    cursor: pointer;
+
+    margin: 1rem;
+
+    background: var(--gradient);
+    border-color: var(--accent-color);
+    border-radius: 15px;
+    box-shadow: 0 $shadow var(--accent-color);
+
+    &:active {
+        transform: translateY($movement);
+        box-shadow: 0 ($shadow - $movement) var(--accent-color);
+    }
+
+    &:hover, &:focus-visible {
+        color: var(--highlight-color);
+        border-color: var(--highlight-color);
+        * {
+            fill: var(--highlight-color);
+        }
+    }
+
+
+    &[disabled] {
+        background: gray;
+        border-color: darkgray;
+        box-shadow: 0 $shadow darkgray;
+        transform: none;
+    }
+}

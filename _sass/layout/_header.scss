@@ -1,0 +1,171 @@
+// general navbar structure 
+header.global-header {
+    width: 100%;
+
+    grid-area: header;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background-color: var(--bg-color);
+
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo space mode toggle";
+
+    &::before {
+        content: "";
+        grid-column: logo / toggle;
+        grid-row: 1 / -1;
+        // background-color: var(--bg-color);
+        background-color: inherit;
+    }
+
+    a {
+        display: block;
+
+        text-decoration: none;
+        font-size: 1.25rem;
+    }
+}
+
+// main navbar logo 
+#header-logo {
+    grid-area: logo;
+    margin: 0.5rem;
+    font-size: 2rem;
+    transition: none;
+
+    &:hover, &:focus {
+        @extend .txt-accent;
+    }
+}
+
+// hamburger menu and controls 
+#nav-toggle {
+    grid-area: toggle;
+    opacity: 0;
+    cursor: pointer;
+
+    &:checked {
+        ~ .header-nav {
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        ~ label {
+            #hamburger {
+                display: none;
+            }
+            #cross {
+                display: unset;
+            }
+        }
+    }
+
+    &:focus-visible ~ label {
+        @extend %focus-outline;
+    }
+}
+#nav-toggle-label {
+    $size: 2.7rem;
+    width: $size;
+    height: $size;
+
+    grid-area: toggle;
+
+    margin: 0.5rem;
+    border-radius: 10px;
+
+    svg {
+        border-radius: inherit;
+        background-image: var(--gradient);
+    }
+    #cross {
+        display: none;
+    }
+}
+
+.header-nav {
+    width: 100%;
+
+    visibility: hidden;
+
+    position: absolute;
+    top: 100%;
+    z-index: -1;
+
+    transform: translateY(-100%);
+    transition: transform ease-in-out 0.5s,
+                visibility 0.5s;
+    
+    border-bottom: 3px solid var(--accent-color);
+
+    ul {
+        margin: 0;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items: stretch;
+    }
+}
+
+// navigation links 
+li.navbar-link {
+    background-image: var(--gradient);
+
+    box-shadow: inset 0 0 0 1000px var(--bg-color);
+    transition: box-shadow .3s ease-in;
+
+    &:hover, &:focus-within {
+        box-shadow: none;
+    }
+
+    > a {
+        width: calc(100% - 2rem);
+        padding: 1rem;
+    
+        text-align: center;
+        font-weight: bold;
+        @extend .txt-accent;
+        transition: color .3s ease-in;
+    
+        &:hover, &:focus {
+            outline: none;
+            color: var(--highlight-color);
+        }
+    }
+}
+
+
+// for large screen 
+@media all and (min-width: 635px) {
+    header.global-header {
+        grid-template-columns: auto 1fr auto auto;
+        grid-template-areas: "logo space mode toggle links";
+    }
+
+    #nav-toggle,
+    #nav-toggle-label {
+        display: none;
+    }
+
+    .header-nav {
+        grid-area: links;
+        position: static;
+        visibility: visible;
+        transform: translateY(0);
+
+        ul {
+            flex-flow: row nowrap;
+        }
+    }
+
+    li.navbar-link {
+        min-width: fit-content;
+        width: 15vw;
+        max-width: 15ch;
+    }
+    
+}

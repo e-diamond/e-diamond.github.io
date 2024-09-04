@@ -1,0 +1,14 @@
+$appearance-transitions: background-color 0.3s ease-in,
+                         color 0.3s ease-in;
+
+$border-width: 3px;
+
+%border {
+    border: $border-width solid var(--accent-color);
+    border-radius: 1rem;
+}
+
+%focus-outline {
+    outline: $border-width solid var(--accent-color);
+    outline-offset: 5px;
+}

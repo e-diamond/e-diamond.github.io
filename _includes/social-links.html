@@ -1,0 +1,11 @@
+<ul class="social-links">
+    {% for name in site.socials %}
+        {% assign social = name[1] %}
+        <li>
+            <a id="{{ name[0] }}-link" class="social-link" href="{{ social.url }}">
+                {%- include {{ social.icon }} -%}
+                {% if include.username == true %}{{ social.username }}{% endif %}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

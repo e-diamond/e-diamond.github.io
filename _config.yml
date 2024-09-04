@@ -1,0 +1,94 @@
+
+title: Beth Diamond
+# description: >- # this means to ignore newlines until "baseurl:"
+#   Write an awesome description for your new site here. You can edit this
+#   line in _config.yml. It will appear in your document head meta (for
+#   Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+
+socials:
+  github:
+    username: e-diamond
+    url: https://github.com/e-diamond
+    icon: icons/github.svg
+  linkedin:
+    username: elizabeth-diamond
+    url: https://www.linkedin.com/in/elizabeth-diamond
+    icon: icons/linkedin.svg
+
+
+# fonts 
+fonts:
+  jost:
+    url: https://indestructibletype.com/fonts/
+    type: font/ttf
+    css: Jost.css
+    preloads:
+      - Jost-400.ttf
+      - Jost-700.ttf
+
+# js libraries 
+js-libs:
+  mathjax:
+    url: https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js
+    hash: sha512-tiaNmAzpy3KcgtuiLwT9WSlSsqGqtDB5ylMwxoqG5ysNIyzkBw24k6UFTuXGgyXJLJ8aM/ho1h67NRKedPx++Q==
+  p5js:
+    url: https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.min.js
+    hash: sha512-lvddmeF7aHRJwdbJeYThWd5kWSjTrXBzCRF/jYROiHzmhMJ1dEXfGH5Q7ft0yhizXTopAETG03s5ajTflauijA==
+
+
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      permalink: "/blog/:year/:month/:day/:title"
+      layout: "post"
+      author: "Beth Diamond"
+      excerpt_separator: <!-- more -->
+  -
+    scope:
+      path: ""
+      type: "tagpages"
+    values:
+      permalink: "/blog/tags/:title"
+      layout: "tagpage"
+
+
+# feed:
+#   collections:
+#     posts:
+#       path: "feeds/blog.xml"
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+sass:
+  sass_dir: _sass
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

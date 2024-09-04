@@ -1,0 +1,73 @@
+@mixin toggle($width, $height, $input-id, $color1:gray, $color2:var(--accent-color)) {
+    $inner-size: $height * 0.75;
+    $margin: calc(($height - $inner-size) / 2);
+    $translate: $width - $inner-size - (2 * $margin);
+
+    display: block;
+
+    * {
+        cursor: pointer;
+        margin: auto;
+    }
+
+    input {
+        // extend .sr-only???
+        width: 0;
+        height: 0;
+        margin: 0;
+        opacity: 0;
+        border: none;
+        appearance: none;
+
+        &:focus-visible ~ .toggle {
+            @extend %focus-outline;
+        }
+    }
+    ##{$input-id}:checked ~ .toggle {
+        background: $color2;
+        &::before {
+            transform: translateX($translate);
+        }
+    }
+
+    .toggle {
+        width: $width;
+        height: $height;
+        position: relative;
+
+        border-radius: 20px;
+        background: $color1;
+
+        &::before {
+            width: $inner-size;
+            height: $inner-size;
+            border-radius: 50%;
+            box-sizing: border-box;
+            content: "";
+
+            display: block;
+            position: absolute;
+            top: $margin;
+            bottom: $margin;
+            left: $margin;
+
+            background: white;
+
+            transition: transform 0.3s;
+        }
+    }
+
+    // for radio button toggle only 
+    label {
+        display: block;
+        position: absolute;
+        height: 100%;
+
+        opacity: 0;
+        overflow: hidden;
+    }
+}
+
+.toggle-label {
+    @include toggle(3rem, 1.5rem, hide-content);
+}

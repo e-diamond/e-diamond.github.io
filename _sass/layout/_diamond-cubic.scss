@@ -1,0 +1,94 @@
+
+#bg-canvas {
+    width: 100vw;
+    height: 85vh;
+
+    position: fixed;
+    z-index: -1;
+
+    cursor: grab;
+}
+
+// the play/pause button 
+#play-pause-btn {
+    width: 4rem;
+    height: 4rem;
+    max-width: 15vw;
+    max-height: 15vw;
+
+    grid-area: bottom;
+    position: sticky;
+    left: 0;
+    bottom: 1rem;
+    z-index: 3;
+}
+
+// the control panel 
+.js-control-panel {
+    grid-area: bottom;
+    left: 0;
+    bottom: 0;
+    padding-left: 6rem;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+
+    overflow-x: scroll;
+    background-color: var(--bg-translucent);
+    border-top: 3px solid var(--accent-color);
+}
+.js-control {
+    width: fit-content;
+    min-width: 6rem;
+    height: 90%;
+
+    text-align: center;
+
+    > * {
+        position: relative;
+        height: 100%;
+        padding: 0;
+        border: none;
+    }
+
+    span, legend {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+
+        @extend .txt-accent;
+        font-weight: bold;
+    }
+}
+
+.layer-btn-container {
+    display: flex;
+    flex-flow: row nowrap;
+
+    button {
+        width: 2.5rem;
+        height: 2.5rem;
+
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    
+        margin: 0.5rem;
+        border-radius: 10px;
+    
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: var(--highlight-color);
+    }
+}
+
+// only show elements if js is enabled 
+.js-only {
+    visibility: collapse;
+}

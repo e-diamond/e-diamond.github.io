@@ -1,0 +1,22 @@
+.skip-link {
+    width: 100%;
+    height: 0;
+    grid-area: skip;
+
+    text-align: center;
+    background-color: var(--accent-color);
+
+    transition: height 0.2s linear;
+
+    &:focus-within {
+        height: 3.5rem;
+    }
+    
+    a {
+        display: inline-block;
+        margin: 1rem;
+        color: $white;
+        font-weight: bold;
+        outline-color: $white;
+    }
+}

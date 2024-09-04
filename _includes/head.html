@@ -1,0 +1,48 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font preloads -->
+    {% assign font = site.fonts.jost %}
+    {% for preload in font.preloads %}
+        <link rel="preload" href="{{ font.url | append: preload }}" as="font"
+              type="{{ font.type }}" crossorigin="anonymous">
+    {% endfor %}
+    <link rel="stylesheet" href="{{ font.url | append: font.css }}" type="text/css" charset="utf-8"/>
+
+    <!-- main stylesheet -->
+    <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+
+    {%- seo -%}
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ site.url }}/sitemap.xml" />
+    <link rel="shortcut icon" href="{{ site.url }}/assets/img/favicon.ico" type="image/x-icon" sizes="64x64">
+    <link rel="shortcut icon" href="{{ site.url }}/assets/img/icon.png" type="image/png" sizes="64x64">
+
+    {%- feed_meta -%}
+    <link rel="alternate" type="mf2+html" href="{{ "blog" | absolute_url }}">
+  
+    <!-- analytics -->
+    {% if jekyll.environment == "production" %}
+        <script data-goatcounter="https://diamond.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    {% endif %}
+      
+    <!-- load any required external libraries -->
+    {% for name in page.libs %}
+      {% assign lib = site.js-libs[name] %}
+      <script src="{{ lib.url }}"
+              integrity="{{ lib.hash }}"
+              crossorigin="anonymous">
+      </script>
+    {% endfor %}
+
+    <!-- any extra scripts for the page -->
+    {% for script in page.scripts %}
+        <script async
+                src="{{ script }}" 
+                type="module">
+        </script>
+    {% endfor %}
+  
+  </head>

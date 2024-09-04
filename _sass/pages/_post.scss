@@ -1,0 +1,97 @@
+.post-main {
+    max-width: 80ch;
+
+    margin: auto;
+    padding: 1rem;
+}
+
+.post-header {
+    margin: 1rem 0;
+
+    img {
+        border-radius: 20px;
+    }
+}
+
+.post-details {
+    @extend %border;
+    padding: 1rem;
+
+    .tag-container {
+        margin-bottom: 0;
+    }
+}
+
+.author-time {
+    display: flex;
+    flex-flow: row wrap;
+
+    * {
+        font-weight: bold;
+    }
+
+    time {
+        @extend .txt-accent;
+    }
+
+    a {
+        @extend %pretty-link;
+        padding-right: 0.1rem;
+    }
+}
+
+.separator {
+    margin: 0 0.5rem;
+    color: var(--accent-color);
+}
+
+.post-content {
+    a {
+        color: var(--accent-color);
+        @extend %pretty-link;
+        outline-offset: 2px;
+    }
+
+    q, blockquote {
+        font-style: italic;
+    }
+    blockquote {
+        margin: auto 1rem;
+        padding: 1rem;
+        border-left: 0.5rem solid var(--accent-color);
+        // background-color: rgb(221, 221, 221);
+    }
+
+    iframe {
+        width: 80%;
+        display: block;
+        margin: auto;
+    }
+}
+
+.post-footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    margin: 1rem 0;
+
+    @extend %border;
+
+    a {
+        font-weight: bold;
+        @extend %pretty-link;
+        outline-offset: 2px;
+    }
+}
+
+.post-nav {
+    padding: 1rem;
+    flex: 1 1 auto;
+}
+#next-post {
+    text-align: left;
+}
+#prev-post {
+    text-align: right;
+}

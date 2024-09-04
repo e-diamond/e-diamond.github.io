@@ -1,0 +1,54 @@
+
+.postcard-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40ch, 1fr));
+    gap: 1.5rem;
+
+    margin-bottom: 2rem;
+}
+
+.postcard {
+    display: flex;
+    flex-flow: column nowrap;
+
+    padding: 1rem;
+
+    @extend %border;
+    transition: $appearance-transitions,
+                transform 0.2s ease-in-out;
+
+    background-color: var(--bg-color);
+
+    &:hover, &:focus-within {
+        box-shadow: 5px 5px var(--accent-color);
+        transform: scale(1.05);
+    }
+
+    a.u-url {
+        @extend .txt-accent;
+    }
+
+    img {
+        height: 40%;
+        object-fit: cover;
+        order: -1;
+    }
+
+    .p-summary {
+        flex: 2 0 auto;
+    }
+}
+
+.postcard-details {
+    time {
+        margin-right: 0.5rem;
+    
+        color: var(--accent-color);
+        font-weight: bold;
+    }
+
+    .tag-container {
+        display: inline-flex;
+        margin-top: 0.5rem;
+    }
+}

@@ -1,0 +1,41 @@
+
+.tag-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    column-gap: 0.5rem;
+}
+
+.tag {
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.5rem;
+
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: var(--accent-color);
+
+    &:hover, &:focus {
+        background-image: var(--gradient);
+    }
+
+    span {
+        color: inherit;
+    }
+
+    .tag-count {
+        margin-left: 0.5rem;
+    }
+}
+
+
+.tagpage-title {
+    margin-bottom: 2rem;
+}
+.header-tag {
+    padding: 0.1rem 1rem;
+    border-radius: 1rem;
+
+    color: white;
+    background-image: var(--gradient);
+}

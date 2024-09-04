@@ -1,0 +1,28 @@
+.blog-header {
+    a {
+        @extend %pretty-link;
+    }
+}
+
+.tag-cloud {
+    @extend %border;
+    padding: 0.5rem 1rem;
+
+    .tag-container {
+        column-gap: 1rem;
+    }
+}
+
+.tag-cloud-title {
+    @extend .txt-accent;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    &::marker {
+        content: "▸";
+    }
+}
+details[open] .tag-cloud-title::marker {
+    content: "▾";
+}

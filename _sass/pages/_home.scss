@@ -1,0 +1,176 @@
+// #home-content.content-wrapper {
+//     grid-area: main;
+//     // display: flex;
+//     // flex-flow: row wrap;
+//     // justify-content: center;
+//     // align-items: flex-start;
+// }
+
+main.home-main {
+    // width: 100vw;
+    width: 100%;
+    max-width: 70ch;
+    min-width: 250px;
+
+    // margin: 0;
+    margin: auto;
+
+    transition: visibility 0s 0.25s, 
+                opacity ease-in-out 0.5s;
+}
+
+section.home-section {
+    margin: 1rem;
+}
+
+// the about me section 
+section#about-me {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0 1rem;
+
+    margin-top: clamp(5vw, 5vw, 30%);
+    padding: 1rem;
+
+    background-color: var(--bg-translucent);
+    @extend %border;
+}
+#personal-info {
+    width: 20ch;
+    flex: 1 1 auto;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 0 1rem;
+
+    #profile-pic {
+        width: 22ch;
+        object-fit: cover;
+    }
+
+    .p-name {
+        margin: 1rem 0;
+
+        font-size: 1.75rem;
+        font-weight: bold;
+    }
+}
+#personal-links {
+    width: 18ch;
+    flex: 1 1 auto;
+
+    li {
+        margin: 1rem 0;
+    }
+}
+
+#location {
+    svg {
+        width: 1.5rem;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        stroke: var(--accent-color);
+    }
+}
+
+
+#personal-summary {
+    width: 40ch;
+    flex: 5 1 auto;
+
+    p:first-of-type {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 1rem 0;
+        * {
+            font-size: inherit;
+        }
+    }
+
+    a {
+        @extend %pretty-link;
+        & .txt-accent {
+            color: transparent;
+        }
+    }
+}
+
+
+.project-item {
+    display: flex;
+    flex-flow: row wrap;
+    container-type: inline-size;
+
+    margin: 1rem 0;
+
+    @extend %border;
+    background-color: var(--bg-translucent);
+
+    img {
+        order: -1;
+        
+        width: 100%;
+        max-height: 20vh;
+
+        object-fit: contain;
+
+        $border-rad: calc(1rem - $border-width);
+        border-radius: $border-rad;
+
+        @container (min-width: 400px) {
+            width: 25%;
+            max-height: none;
+
+            border-radius: $border-rad 0 0 $border-rad;
+        }
+    }
+}
+#stem-at-6am img {
+    background-color: $stem-blue;
+}
+
+.project-desc {
+    flex: 1 1 0;
+    padding: 1rem;
+
+    a {
+        @extend %pretty-link;
+    }
+}
+
+
+// the featured posts section
+section#featured-posts {
+    ul {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
+        gap: 1rem;
+    }
+}
+.featured-post {
+    min-height: 10rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+
+    --img-tint: color-mix(in srgb, var(--bg-color), transparent 70%);
+    transition: transform 0.2s ease-in-out;
+
+    &:hover, &:focus-within {
+        transform: scale(1.1);
+    }
+    &:focus-within {
+        @extend %focus-outline;
+        outline-offset: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+        text-shadow: 1px 1px 1px black;
+        font-size: 2rem;
+        outline: none;
+    }
+}

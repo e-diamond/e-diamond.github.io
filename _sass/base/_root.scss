@@ -1,0 +1,111 @@
+@mixin light-mode() {
+    --bg-color: #{$white};
+    --txt-color: #{$black};
+
+    --accent-color: #{$purple};
+    --accent-highlight: #{$light-purple};
+
+    * {
+        color-scheme: light;
+    }
+}
+@mixin dark-mode() {
+    --bg-color: #{$black};
+    --txt-color: #{$white};
+
+    --accent-color: #{$light-purple};
+    --accent-highlight: #{$purple};
+
+    * {
+        color-scheme: dark;
+    }
+}
+
+:root {
+    --bg-color: #{$white};
+    --txt-color: #{$black};
+    --highlight-color: #{$white};
+
+    --accent-color: #{$purple};
+    --accent-highlight: #{$light-purple};
+    --gradient: linear-gradient(to bottom right, #{$pink}, var(--accent-color), #{$blue});
+    --bg-translucent: color-mix(in srgb, var(--bg-color), transparent 40%);
+
+    * {
+        transition: $appearance-transitions;
+    }
+
+    &:has(#dark-mode:checked) {
+        @include dark-mode();
+    }
+    &:has(#light-mode:checked) {
+        @include light-mode();
+    }
+}
+
+::selection {
+    background: var(--accent-color);
+    color: var(--highlight-color);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        @include dark-mode();
+    }
+}
+
+body {
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Jost', Arial, Helvetica, sans-serif;
+
+    background-color: var(--bg-color);
+
+    display: grid;
+    // grid-template-columns: 1fr auto 1fr;
+    // grid-template-rows: auto 1fr auto auto;
+    // grid-template-areas: "header header header"
+    //                      "top top top"
+    //                      "main main main"
+    //                      "bottom bottom bottom"
+    //                      "footer footer footer";
+
+    grid-template-rows: auto auto 1fr auto auto;
+    grid-template-areas: "skip" "header" "top" "main" "bottom" "footer";
+}
+
+// .content-wrapper {
+//     width: 100%;
+//     grid-area: main;
+
+//     display: flex;
+//     flex-flow: row wrap;
+//     justify-content: center;
+//     align-items: flex-start;
+// }
+
+main {
+    margin: 0 3vw;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+
+    border-radius: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+a, button, summary {
+    border-radius: 2px;
+    &:focus-visible {
+        @extend %focus-outline;
+    }
+}

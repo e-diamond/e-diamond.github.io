@@ -1,0 +1,57 @@
+h1, h2 {
+    @extend .txt-accent;
+    margin: 1rem 0;
+}
+
+h1 {
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+}
+
+* {
+    color: var(--txt-color);
+}
+strong {
+    color: var(--accent-color);
+}
+
+.txt-accent {
+    width: fit-content;
+    background: var(--gradient);
+    background-clip: text;
+    color: transparent;
+}
+
+%pretty-link {
+    color: var(--txt-color);
+    text-decoration-color: var(--accent-color);
+    text-decoration-thickness: 2px;
+    transition: text-decoration-thickness 0.1s linear;
+
+    &:hover, &:focus {
+        @extend .txt-accent;
+        text-decoration-thickness: 4px;
+        text-decoration-skip-ink: none;
+
+        svg * {
+            fill: var(--hover-color);
+        }
+    }
+
+    * {
+        color: unset;
+    }
+
+    img, svg {
+        display: inline;
+        margin-right: 0.5rem;
+        vertical-align: middle;
+        fill: var(--fill-color);
+    }
+}

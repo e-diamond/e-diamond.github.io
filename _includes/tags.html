@@ -1,0 +1,20 @@
+<ul class="tag-container">
+    {% for tag in include.tags %}
+
+        <li>
+            {% unless include.count == true %}
+                <a href="{{site.url}}/blog/tags/{{ tag }}" class="tag p-category" rel="tag">
+                    <span>{{ tag }}</span>
+                </a>
+
+            {% else %}
+                <a href="{{site.url}}/blog/tags/{{ tag[0] }}" class="tag" rel="tag">
+                    <span>{{ tag[0] }}</span>
+                    <span class="tag-count">{{ tag[1].size }}</span>
+                </a>
+
+            {% endunless %}
+        </li>
+
+    {% endfor %}
+</ul>
