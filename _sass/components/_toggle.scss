@@ -1,6 +1,7 @@
 @mixin toggle($width, $height, $input-id, $color1:gray, $color2:var(--accent-color)) {
     $inner-size: $height * 0.75;
-    $margin: calc(($height - $inner-size) / 2);
+    // $margin: calc(($height - $inner-size) / 2);
+    $margin: ($height - $inner-size) * 0.5;
     $translate: $width - $inner-size - (2 * $margin);
 
     display: block;
