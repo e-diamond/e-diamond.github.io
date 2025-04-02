@@ -1,0 +1,21 @@
+<div class="bookmark-preview h-cite u-bookmark-of u-repost-of">
+    <div class="bookmark-details">
+        <h2 class="p-name">
+            <a class="u-url" href="{{ include.bookmark.link }}" target="_blank">
+                {{ include.bookmark.title }}
+            </a>
+        </h2>
+        <p class="bookmark-author p-author h-card">
+            {% for author in include.bookmark.authors %}
+                {% if author.url == null %}
+                    <span class="p-name">{{ author.name }}</span>
+                {% else %}
+                    <a class="u-url p-name" href="{{ author.url }}" target="_blank">
+                        {{ author.name }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+    <img class="u-photo" src="{{ include.bookmark.image }}" loading="lazy" aria-hidden="true">
+</div>

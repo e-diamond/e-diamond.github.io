@@ -1,0 +1,11 @@
+.bookmark-main {
+    width: clamp(100px, 80ch, calc(100% - 2rem));
+
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    gap: 1rem;
+
+    margin: 0 auto;
+    padding: 1rem;
+
+}

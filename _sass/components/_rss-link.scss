@@ -1,0 +1,19 @@
+.title-feed {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+    gap: 1rem;
+}
+.rss-link {
+    display: block;
+    width: 1.5rem;
+    height: fit-content;
+
+    svg {
+        fill: var(--accent-color);
+    }
+
+    &:hover, &:focus-visible {
+        svg {fill: $pink;}
+    }
+}

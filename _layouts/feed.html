@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+{% capture name %}{{ page.title | downcase }}{% endcapture %}
+
+<main class="{{ name }}-main h-feed" id="main">
+    <header>
+        <div class="title-feed">
+            <h1 class="p-name txt-accent">{{ page.title }}</h1>
+            <a class="rss-link" href="{{site.url}}/{{name}}.xml">
+                {% include icons/rss.svg %}
+            </a>
+        </div>
+        <p class="p-summary">{{ page.description }}</p>
+    </header>
+    <aside class="tag-cloud">
+        <details open>
+            <summary class="tag-cloud-title">
+                All Tags
+            </summary>
+            <!-- tags go here -->
+            {% if name != "blog" %}
+                {% capture tag-key %}{{ name }}-tags{% endcapture %}
+                {% assign tag-list = site[tag-key] %}
+            {% else %}
+                {% assign tag-list = site.tags %}
+            {% endif %}
+            {%- include tags.html tags=tag-list parent=name count=true -%}
+        </details>
+    </aside>
+    {% case page.title %}
+        {% when "Blog" %}
+            {%- include postcards.html posts=site.posts -%}
+        {% when "Bookmarks" %}
+            {%- include bookmark-cards.html bookmarks=site.bookmarks -%}
+    {% endcase %}
+</main>

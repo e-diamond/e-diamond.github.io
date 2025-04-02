@@ -1,0 +1,53 @@
+.bookmark-container {
+    grid-area: bookmarks;
+    max-width: 80ch;
+    margin: 0 auto;
+}
+.bookmark-card {
+    margin-bottom: 1rem;
+    @extend %border;
+
+    .bookmark-preview {
+        border: {
+            top: none;
+            left: none;
+            right: none;
+
+            radius: 0;
+        };
+        img {
+            @container (min-width: 400px) {
+                border-bottom-left-radius: 0;
+            }
+        }
+    }
+
+    .post-content {
+        padding: 0 1rem;
+    }
+
+    .tag-container {
+        display: inline-flex;
+    }
+}
+
+.bookmark-meta {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    .tag-container {
+        margin: 1rem;
+    }
+
+    a.permalink {
+        margin: 0 1rem;
+        padding: 0.1rem 0.5rem;
+        border-radius: 50%;
+        color: $white;
+        // text-decoration: none;
+        font-weight: bold;
+        background-color: var(--accent-color);
+    }
+}

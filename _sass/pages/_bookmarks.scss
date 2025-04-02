@@ -1,0 +1,30 @@
+.bookmarks-main {
+    display: grid;
+    gap: 1rem;
+    grid-template-rows: repeat(3, min-content);
+    grid-template-columns: auto;
+    grid-template-areas: "head"
+                         "tags"
+                         "bookmarks";
+
+    @media all and (min-width: 900px) {
+        grid-template-rows: min-content auto;
+        grid-template-columns: minmax(300px, 25%) 1fr;
+        grid-template-areas: "head head"
+                             "tags bookmarks";
+    }
+
+    header {
+        grid-area: head;
+    }
+    
+    .tag-cloud {
+        grid-area: tags;
+        height: min-content;
+        box-sizing: border-box;
+    }
+
+    .bookmark-container {
+        margin: 0;
+    }
+}

@@ -2,8 +2,13 @@
 layout: default
 --- 
 
-<main>
+<main class="h-feed" id="main">
     <h1 class="tagpage-title p-name">Tagged: <span class="header-tag">{{ page.title }}</span></h1>
 
-    {%- include postcards.html posts=page.tagged_posts -%}
+    {% case page.collection %}
+        {% when "blog" %}
+            {%- include postcards.html posts=page.tagged_posts -%}
+        {% when "bookmarks" %}
+            {%- include bookmark-cards.html bookmarks=page.tagged_posts -%}
+    {% endcase %}
 </main>

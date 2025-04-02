@@ -6,6 +6,7 @@ title: Beth Diamond
 #   Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
+assets: https://assets-bethdiamond.netlify.app/
 
 
 socials:
@@ -38,7 +39,11 @@ js-libs:
     url: https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.min.js
     hash: sha512-lvddmeF7aHRJwdbJeYThWd5kWSjTrXBzCRF/jYROiHzmhMJ1dEXfGH5Q7ft0yhizXTopAETG03s5ajTflauijA==
 
-
+collections:
+  bookmarks:
+    output: true
+    # permalink: /:collection/:title
+    permalink: /:collection/:year/:month/:day/:title
 
 defaults:
   -
@@ -49,20 +54,31 @@ defaults:
       permalink: "/blog/:year/:month/:day/:title"
       layout: "post"
       author: "Beth Diamond"
+      image: "https://assets-bethdiamond.netlify.app/chalkboard-banner.jpg"
       excerpt_separator: <!-- more -->
+  -
+    scope:
+      path: ""
+      type: "bookmarks"
+    values:
+      layout: "bookmark"
+      author: "Beth Diamond"
+      image: https://assets-bethdiamond.netlify.app/bookmark.svg
   -
     scope:
       path: ""
       type: "tagpages"
     values:
-      permalink: "/blog/tags/:title"
+      permalink: "/:collection/tags/:title"
       layout: "tagpage"
 
 
-# feed:
-#   collections:
-#     posts:
-#       path: "feeds/blog.xml"
+feed:
+  collections:
+    posts:
+      path: "blog.xml"
+    bookmarks:
+      path: "bookmarks.xml"
 
 # Build settings
 plugins:
@@ -71,7 +87,8 @@ plugins:
   - jekyll-seo-tag
 
 sass:
-  sass_dir: _sass
+  style: compressed
+  sourcemap: development
 
 # Exclude from processing.
 # The following items will not be processed, by default.

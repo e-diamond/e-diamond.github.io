@@ -1,7 +1,11 @@
 
 .postcard-container{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40ch, 1fr));
+    --min-width: 40ch;
+    @media all and (max-width: 500px) {
+        --min-width: 250px;
+    }
+    grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
     gap: 1.5rem;
 
     margin-bottom: 2rem;
@@ -10,6 +14,7 @@
 .postcard {
     display: flex;
     flex-flow: column nowrap;
+    justify-content: space-between;
 
     padding: 1rem;
 
@@ -29,13 +34,14 @@
     }
 
     img {
-        height: 40%;
+        height: 33%;
+        flex: 0 0 auto;
         object-fit: cover;
         order: -1;
     }
 
     .p-summary {
-        flex: 2 0 auto;
+        flex-grow: 1;
     }
 }
 

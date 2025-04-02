@@ -1,0 +1,23 @@
+.bookmark-preview {
+    @extend %link-snippet;
+    img {
+        object-fit: cover;
+
+        // backup if image load fails 
+        background-image: url('https://assets-bethdiamond.netlify.app/bookmark.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+.bookmark-details {
+    margin: auto 1rem;
+
+    h2 {
+        font-size: 1.5rem;
+        background: none;
+    }
+    a {
+        @extend %pretty-link;
+    }
+}

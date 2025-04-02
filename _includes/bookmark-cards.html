@@ -1,0 +1,14 @@
+<ul class="bookmark-container">
+    {% for bookmark in include.bookmarks reversed %}
+        <li>
+            <article class="bookmark-card h-entry">
+                {%- include bookmark-preview.html bookmark=bookmark -%}
+                <div class="post-content e-content">{{ bookmark.content }}</div>
+                <div class="bookmark-meta">
+                    {%- include tags.html tags=bookmark.tags parent="bookmarks" -%}
+                    <a class="permalink u-url" href="{{ bookmark.url }}" title="permalink">#</a>
+                </div>
+            </article>
+        </li>
+    {% endfor %}
+</ul>

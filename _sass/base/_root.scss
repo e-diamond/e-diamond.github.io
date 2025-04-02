@@ -65,29 +65,13 @@ body {
     background-color: var(--bg-color);
 
     display: grid;
-    // grid-template-columns: 1fr auto 1fr;
-    // grid-template-rows: auto 1fr auto auto;
-    // grid-template-areas: "header header header"
-    //                      "top top top"
-    //                      "main main main"
-    //                      "bottom bottom bottom"
-    //                      "footer footer footer";
 
     grid-template-rows: auto auto 1fr auto auto;
-    grid-template-areas: "skip" "header" "top" "main" "bottom" "footer";
+    grid-template-areas: "skip" "header" "main" "bottom" "footer";
 }
 
-// .content-wrapper {
-//     width: 100%;
-//     grid-area: main;
-
-//     display: flex;
-//     flex-flow: row wrap;
-//     justify-content: center;
-//     align-items: flex-start;
-// }
-
 main {
+    grid-area: main;
     margin: 0 3vw;
 }
 

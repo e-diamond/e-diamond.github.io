@@ -6,16 +6,21 @@ module TagPages
   
       def generate(site)
         site.tags.each do |tag, posts|
-          site.pages << TagPage.new(site, tag, posts)
+          site.pages << TagPage.new(site, tag, posts, "blog")
+        end
+
+        site.config['bookmarks-tags'].each do |tag, posts|
+          site.pages << TagPage.new(site, tag, posts, "bookmarks")
         end
       end
     end
   
     # Subclass of `Jekyll::Page` with custom method definitions.
     class TagPage < Jekyll::Page
-      def initialize(site, tag, posts)
+      def initialize(site, tag, posts, dir)
         @site = site             # the current site instance.
         @base = site.source      # path to the source directory.
+        @dir  = dir              # the directory the page will reside in.
   
         @basename = tag 
         @ext = '.html' 
@@ -24,6 +29,7 @@ module TagPages
         # Add front matter 
         @data = {
           'title' => tag,
+          'collection' => @dir,
           'tagged_posts' => posts
         }
   
@@ -37,6 +43,7 @@ module TagPages
       # Placeholders that are used in constructing page URL.
       def url_placeholders
         {
+          :collection => @dir,
           :title => basename,
           :output_ext => output_ext,
         }
