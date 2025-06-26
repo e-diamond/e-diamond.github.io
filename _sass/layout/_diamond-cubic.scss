@@ -66,6 +66,10 @@
     }
 }
 
+label[for="hide-content"] {
+    @include toggle(3rem, 1.5rem, hide-content);
+}
+
 .layer-btn-container {
     display: flex;
     flex-flow: row nowrap;
