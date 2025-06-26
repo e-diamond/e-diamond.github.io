@@ -8,6 +8,10 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
+
+        &[src$="bookmark.svg"] {
+            object-fit: contain;
+        }
     }
 }
 .bookmark-details {

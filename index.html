@@ -55,31 +55,20 @@ scripts:
             </li>
         </ul>
     </section>
-    <section class="home-section" id="featured-posts">
+    <!-- <section class="home-section" id="featured-posts">
         <h2>Featured Posts</h2>
         <ul>
             {% for post in site.posts %}
-                <li class="featured-post" 
-                    style="background: linear-gradient(var(--img-tint), var(--img-tint)), 
-                                        url('{{ post.image }}');
-                            background-size: cover;">
-                    <!-- scoped style for when supported by firefox -->
-                    <!-- <style>
-                        @scope {
-                            :scope {
-                                background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), 
-                                            url("{{ post.image }}");
-                                background-size: cover;
-                            }
-                        }
-                    </style> -->
+                <li class="featured-post"
+                    style="background-image: url('{{ post.image }}');
+                           background-size: cover;">
                     <h3>
                         <a class="u-url" href="{{ post.url }}">{{ post.title }}</a>
                     </h3>
                 </li>
             {% endfor %}
         </ul>
-    </section>
+    </section> -->
 </main>
 
 <button id="play-pause-btn" class="js-only" type="button" title="Pause Animation"
