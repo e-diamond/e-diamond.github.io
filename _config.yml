@@ -54,7 +54,7 @@ defaults:
       permalink: "/blog/:year/:month/:day/:title"
       layout: "post"
       author: "Beth Diamond"
-      image: "https://assets-bethdiamond.netlify.app/chalkboard-banner.jpg"
+      image: "https://assets-bethdiamond.netlify.app/img/chalkboard-banner.jpg"
       excerpt_separator: <!-- more -->
   -
     scope:
@@ -63,7 +63,7 @@ defaults:
     values:
       layout: "bookmark"
       author: "Beth Diamond"
-      image: https://assets-bethdiamond.netlify.app/bookmark.svg
+      image: https://assets-bethdiamond.netlify.app/img/bookmark.svg
   -
     scope:
       path: ""
