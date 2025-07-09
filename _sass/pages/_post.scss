@@ -47,7 +47,6 @@
 
 .post-content {
     a {
-        color: var(--accent-color);
         @extend %pretty-link;
         outline-offset: 2px;
     }
