@@ -4,16 +4,18 @@
     align-items: baseline;
     gap: 1rem;
 }
-.rss-link {
+a.rss-link {
     display: block;
     width: 1.5rem;
     height: fit-content;
 
     svg {
         fill: var(--accent-color);
+        width: inherit;
     }
 
     &:hover, &:focus-visible {
+        width: 1.5rem;
         svg {fill: $pink;}
     }
 }

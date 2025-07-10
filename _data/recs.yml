@@ -1,0 +1,88 @@
+- name: Blogs
+  items:
+  - title: The Aperiodical
+    url: https://aperiodical.com/
+    feed: https://aperiodical.com/feed/rss/
+    image: aperiodical.png
+    description: "Your one-stop shop for all the latest in maths and maths communication! I'm a big fan at the moment of <a href=\"https://colinbeveridge.co.uk/\" target=\"_blank\">Colin Beveridge</a>'s weekly roundup <a href=\"https://aperiodical.com/category/columns/double-maths-first-thing/\" target=\"_blank\">Double Maths First Thing</a> (numbered in hexadecimal for your regular non-base-10 fix!)."
+
+  - title: Shellsharks Scrolls
+    url: https://shellsharks.com/scrolls/
+    feed: https://shellsharks.com/feeds/scroll-feed.xml
+    image: scrolls.png
+    description: "A weekly roundup of going-ons in the IndieWeb and the Fediverse, with a bit of cybersecurity thrown in, too (the main <a href=\"https://shellsharks.com/\" target=\"_blank\">Shellsharks</a> site isn't bad, either!)."
+
+  - title: IndieNews
+    url: https://news.indieweb.org/en
+    feed: https://granary-demo.appspot.com/url?input=html&output=atom&url=https%3A%2F%2Fnews.indieweb.org%2Fen
+    image: indieweb.svg
+    description: "What everyone's up to on the IndieWeb."
+
+  - title: HeydonWorks
+    url: https://heydonworks.com/
+    feed: https://heydonworks.com/feed.xml
+    image: heydonworks.svg
+    description: "Everything web design. I'm enjoying their series explaining every HTML element (<a href=\"https://heydonworks.com/article/the-anchor-element/\">start here with the anchor element!</a>)."
+
+- name: Newsletters
+  items:
+  - title: Tom Scott's Weekly Newsletter
+    url: https://www.tomscott.com/newsletter/
+    feed: https://www.tomscott.com/updates.xml
+    image: tom-scott.jpg
+    description: "A weekly roundup of Good Stuff from the internet."
+
+  - title: The SciCommer
+    url: https://thescicommer.substack.com/
+    feed: https://thescicommer.substack.com/feed
+    image: scicommer.webp
+    description: "The latest news in science communication."
+        
+- name: Podcasts
+  items:
+  - title: No Such Thing As A Fish
+    url: https://www.nosuchthingasafish.com/
+    feed: https://audioboom.com/channels/2399216.rss
+    image: no-such-thing-as-a-fish.png
+    description: "I actually don't listen to podcasts a lot, but when I do it's this one. Four researchers from <a href=\"https://www.qi.com/\">QI</a> (the best panel show) share their favourite facts from the last seven days."
+
+  - title: The Infinite Monkey Cage
+    url: https://www.bbc.co.uk/programmes/b00snr0w
+    feed: https://podcasts.files.bbci.co.uk/b00snr0w.rss
+    image: infinite-monkey-cage.jpg
+    description: Okay, okay, I listen to this one sometimes, too ;). Brian Cox and Robin Ince bring scientists and comedians together to investigate life, the universe, and everything.
+
+- name: Webcomics
+  items:
+  - title: xkcd
+    url: https://xkcd.com/
+    feed: https://xkcd.com/atom.xml
+    image: xkcd.png 
+    description: "It's xkcd."
+
+  - title: Saturday Morning Breakfast Cereal
+    url: https://www.smbc-comics.com/
+    feed: https://www.smbc-comics.com/comic/rss
+    image: smbc.jpg
+    description: "I don't know how to describe this one. What does Wikipedia say?
+    <blockquote>Recurring themes in SMBC include science, research, superheroes, religion, romance, dating, parenting and the meaning of life.</blockquote> <p>That'll do.</p>"
+
+  - title: Scandinavia and the World
+    url: https://satwcomic.com/
+    feed: https://feeds.feedburner.com/satwcomic
+    image: satw.png
+    description: What if all the countries were people?
+
+- name: Magazines and Miscellany
+  items:
+  - title: Chalkdust
+    url: https://chalkdustmagazine.com/
+    feed: https://chalkdustmagazine.com/feed/
+    image: chalkdust.png
+    description: "A magazine for the mathematically curious!"
+
+  - title: Good Internet
+    url: https://goodinternetmagazine.com/
+    feed: https://goodinternetmagazine.com/rss/
+    image: good-internet.png
+    description: "All about personal websites."

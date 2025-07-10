@@ -1,0 +1,36 @@
+---
+layout: default
+title: "Recs 'n' 'Rolls"
+permalink: /recs
+description: "A collection of stuff I like."
+---
+
+<main class="recs-main" id="main">
+    <header>
+        <h1>{{ page.title }}</h1>
+
+        <p>Here's a collection of places I regularly visit (that I <strong>recommend</strong>, even)! If you were looking for a <strong>blogroll</strong>, it's here! If you were looking for an anything-else-roll, that's here too.</p>
+    </header>
+
+    {% for section in site.data.recs %}
+        <section>
+            <h2>{{ section.name }}</h2>
+            {% for item in section.items %}
+                <ul>
+                    <li class="rec-item">
+                        <div>
+                            <h3>
+                                <a href="{{ item.url }}" target="_blank">{{ item.title }}</a>
+                            </h3>
+                            <a class="rss-link" href="{{ item.feed }}" target="_blank">
+                                {% include icons/rss.svg %}
+                            </a>
+                            <p>{{ item.description }}</p>
+                        </div>
+                        <img src="{{site.assets}}/img/recs/{{item.image}}" loading="lazy" aria-hidden="true">
+                    </li>
+                </ul>
+            {% endfor %}
+        </section>
+    {% endfor %}
+</main>

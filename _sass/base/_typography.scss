@@ -21,6 +21,17 @@ strong {
     color: var(--accent-color);
 }
 
+
+q, blockquote {
+    font-style: italic;
+}
+blockquote {
+    margin: auto;
+    padding: 1rem;
+    border-left: 0.5rem solid var(--accent-color);
+    background-color: rgba(#bbbbbb, 0.5);
+}
+
 .txt-accent {
     width: fit-content;
     background: var(--gradient);
@@ -39,7 +50,7 @@ strong {
         text-decoration-thickness: 4px;
         text-decoration-skip-ink: none;
 
-        svg * {
+        svg {
             fill: var(--hover-color);
         }
     }

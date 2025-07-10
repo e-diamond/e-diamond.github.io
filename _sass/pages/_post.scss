@@ -51,16 +51,6 @@
         outline-offset: 2px;
     }
 
-    q, blockquote {
-        font-style: italic;
-    }
-    blockquote {
-        margin: auto 1rem;
-        padding: 1rem;
-        border-left: 0.5rem solid var(--accent-color);
-        // background-color: rgb(221, 221, 221);
-    }
-
     iframe {
         width: 80%;
         display: block;
