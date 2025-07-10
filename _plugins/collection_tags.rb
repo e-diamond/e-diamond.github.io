@@ -17,6 +17,9 @@ module CollectionTags
         end
       end
 
+      # sort tags by number of posts
+      tags = tags.sort_by{ |tag, posts| -posts.length }.to_h
+
       # output to config 
       site.config['bookmarks-tags'] = tags
       # site.config['collections']['bookmarks']['tags'] = tags
