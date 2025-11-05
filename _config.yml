@@ -42,7 +42,6 @@ js-libs:
 collections:
   bookmarks:
     output: true
-    # permalink: /:collection/:title
     permalink: /:collection/:year/:month/:day/:title
 
 defaults:
@@ -71,6 +70,8 @@ defaults:
     values:
       permalink: "/:collection/tags/:title"
       layout: "tagpage"
+      libs: 
+        - "mathjax"
 
 
 feed:
