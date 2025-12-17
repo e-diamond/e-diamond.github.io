@@ -2,6 +2,7 @@ $appearance-transitions: background-color 0.3s ease-in,
                          color 0.3s ease-in;
 
 $border-width: 3px;
+$border-rad: calc(1rem - $border-width);
 
 %border {
     border: $border-width solid var(--accent-color);
@@ -23,7 +24,6 @@ $border-width: 3px;
         order: -1;
         width: 25%;
 
-        $border-rad: calc(1rem - $border-width);
         border-radius: $border-rad 0 0 $border-rad;
 
         @container (max-width: 400px) {

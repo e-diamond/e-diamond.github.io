@@ -1,5 +1,5 @@
 <ul class="bookmark-container">
-    {% for bookmark in include.bookmarks reversed %}
+    {% for bookmark in include.bookmarks %}
         <li>
             <article class="bookmark-card h-entry">
                 {%- include bookmark-preview.html bookmark=bookmark -%}

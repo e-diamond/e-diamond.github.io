@@ -33,6 +33,19 @@ layout: default
         {% when "Blog" %}
             {%- include postcards.html posts=site.posts -%}
         {% when "Bookmarks" %}
-            {%- include bookmark-cards.html bookmarks=site.bookmarks -%}
+            {%- include bookmark-cards.html bookmarks=paginator.posts -%}
     {% endcase %}
+    <footer class="feed-footer">
+        {% if paginator.page_trail %}
+            <ol class="page-links">
+                {% for trail in paginator.page_trail %}
+                <li class="page-link 
+                            {% if page.url == trail.path %}selected{% endif %}"
+                >
+                    <a href="{{site.url}}{{ trail.path | remove: "/index.html"}}">{{ trail.num }}</a>
+                </li>
+                {% endfor %}     
+            </ol>
+        {% endif %}
+    </footer>
 </main>

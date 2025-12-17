@@ -81,8 +81,23 @@ feed:
     bookmarks:
       path: "bookmarks.xml"
 
+
+pagination:
+  enabled: true
+  collection: "bookmarks"
+  title: ":title"
+  per_page: 20
+  permalink: "/:num/"
+  sort_field: "date"
+  sort_reverse: true
+  trail:
+    before: 2
+    after: 2
+
+
 # Build settings
 plugins:
+  - jekyll-paginate-v2
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag

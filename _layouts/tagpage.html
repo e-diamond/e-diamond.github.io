@@ -9,6 +9,7 @@ layout: default
         {% when "blog" %}
             {%- include postcards.html posts=page.tagged_posts -%}
         {% when "bookmarks" %}
-            {%- include bookmark-cards.html bookmarks=page.tagged_posts -%}
+            {% assign rev_posts = page.tagged_posts | reverse %}
+            {%- include bookmark-cards.html bookmarks=rev_posts -%}
     {% endcase %}
 </main>
