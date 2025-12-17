@@ -8,11 +8,11 @@
         <p class="bookmark-author p-author h-card">
             {% for author in include.bookmark.authors %}
                 {% if author.url == null %}
-                    <span class="p-name">{{ author.name }}</span>
+                    <span class="p-name">{{ author.name }}</span><br>
                 {% else %}
                     <a class="u-url p-name" href="{{ author.url }}" target="_blank">
                         {{ author.name }}
-                    </a>
+                    </a><br>
                 {% endif %}
             {% endfor %}
         </p>
