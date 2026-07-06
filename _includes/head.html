@@ -46,6 +46,19 @@
       </script>
     {% endfor %}
 
+    <!-- include importmap for resolving specifiers -->
+    {% if page.imports %}
+      <script type="importmap">
+        {
+          "imports": {
+            {% for import in page.imports %}
+              "{{ import[0] }}": "{{ import[1] }}"
+            {% endfor %}
+          }
+        }
+      </script>
+    {% endif %}
+
     <!-- any extra scripts for the page -->
     {% for script in page.scripts %}
         <script src="{{ script }}" 
