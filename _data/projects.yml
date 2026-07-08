@@ -1,11 +1,11 @@
--
+- 
   title: STEM@6AM
   url: https://stemat6am.com
   image: "{{site.assets}}/img/stem-at-6am.png"
-  description: "This is a website where I write about science and maths topics for a general audience. Be sure to check out my article on <a href="https://stemat6am.com/physics/quantum-mechanics/intro-to-quantum-mechanics">the history of quantum mechanics</a>!"
+  description: 'This is a website where I write about science and maths topics for a general audience. Be sure to check out my article on <a href="https://stemat6am.com/physics/quantum-mechanics/intro-to-quantum-mechanics">the history of quantum mechanics</a>!'
 
 - 
   title: p5.VectorViz
   url: https://github.com/e-diamond/p5.vectorviz
   image: "{{site.assets}}/img/vectorviz.png"
-  description: "A JS library for the <a href="https://p5js.org">p5.js</a> creative coding tool. Designed to help create interactive maths demonstrations on the web."
+  description: 'A JS library for the <a href="https://p5js.org">p5.js</a> creative coding tool. Designed to help create interactive maths demonstrations on the web.'
