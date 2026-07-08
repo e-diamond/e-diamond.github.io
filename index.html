@@ -40,19 +40,19 @@ scripts:
     <section class="home-section" id="projects">
         <h2>Projects</h2>
         <ul>
-            <li class="project-item" id="stem-at-6am">
+        {% for project in site.data.projects %}
+            <li class="project-item" id="{{ project.id }}">
                 <div class="project-desc">
                     <h3>
-                        <a href="https://stemat6am.com">STEM@6AM</a>
+                        <a target="_blank" href="{{ project.url }}">{{ project.title }}</a>
                     </h3>
-                    <p><em>Science so simple, you'll understand it before your morning coffee!</em></p>
-                    <p>This is a website where I write about science and maths topics for a general audience.
-                        Be sure to check out my article on 
-                        <a href="https://stemat6am.com/physics/quantum-mechanics/intro-to-quantum-mechanics">the history of quantum mechanics</a>!
+                    <p>
+                        {{ project.description }}
                     </p>
                 </div>
-                <img src="{{site.assets}}/img/stem-at-6am.png" aria-hidden>
+                <img src="{{site.assets}}/img/{{project.image}}" aria-hidden>
             </li>
+        {% endfor %}
         </ul>
     </section>
     <!-- <section class="home-section" id="featured-posts">
