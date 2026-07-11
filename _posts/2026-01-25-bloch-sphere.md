@@ -10,7 +10,7 @@ scripts:
      - assets/posts/bloch-sphere/bloch-sphere.js
 ---
 
-In quantum computing, we have the concept of _qubits_. Qubits are analogous to classical bits in that they have two possible states, akin to the classical bit's **0** and **1**, though differ in the fact that, up until the moment of measurement, they can also exits in a superposition of these states.
+In quantum computing, we have the concept of _qubits_. Qubits are analogous to classical bits in that they have two possible states, akin to the classical bit's **0** and **1**, though differ in the fact that, up until the moment of measurement, they can also exist in a superposition of these states.
 
 <!-- more -->
 
@@ -20,19 +20,14 @@ Classical bits are simple. A bit can exist in one of two states: we often call t
 ## Qubits
 Qubits can be measured as being in one of two **eigenstates**: we often call these the $$\ket{0}$$ state, and the $$\ket{1}$$ state, though really we could call them anything. $$\ket{0}$$ and $$\ket{1}$$ might represent the spin-up and spin-down state of an electron, the ground state and first excited state of a particle, or any other quantum system with two eigenstates. The use of $$\ket{0}$$ and $$\ket{1}$$ is just an abstraction of these physical systems.
 
-We always measure a quantum system as being in one of these eigenstates, though, up until measurement, it may exist in a **superposition** of eigenstates. If you don't know what a superposition is, then it's just the physics word for a linear combination. And if you don't know what a linear combination is, then it's just the maths word for addition. We usually call the current state of the quantum system $$\ket{\psi}$$.
-
-A property of quantum eigenstates is that they are always **orthogonal**. This means that they have no 'overlap': if my state $$\ket{\psi}$$ is 100% in state $$\ket{1}$$, that means it is 0% in state $$\ket{0}$$, and vice versa. This makes sense, as we only ever measure a quantum system as being in a single eigenstate. Because of this, $$\ket{0}$$ and $$\ket{1}$$ make for a natural basis, meaning we can always write $$\ket{\psi}$$ as a combination of $$\ket{0}$$ and $$\ket{1}$$, like this:
+We always measure a quantum system as being in just one of these eigenstates, though, up until measurement, it may exist in a **superposition** of eigenstates. If you don't know what a superposition is, then it's just the physics word for a linear combination. And if you don't know what a linear combination is, then it's just the maths word for a kind of addition. We usually call the current state of the quantum system $$\ket{\psi}$$, and we express its superposition like this:
 
 $$\ket{\psi} = a\ket{0} + b\ket{1}$$
 
-This is illustrated here:
+$$a$$ and $$b$$ here are numbers that represent the 'amount' of $$\ket{\psi}$$ that is in each of the $$\ket{0}$$ and $$\ket{1}$$ eigenstates. A property of quantum eigenstates is that they are always **orthogonal**. This means that they have no 'overlap': if $$\ket{\psi}$$ is 100% in state $$\ket{1}$$, that necessarily means it is 0% in state $$\ket{0}$$, and vice versa. This makes sense, as we only ever _measure_ a quantum system as being in a single eigenstate.
 
-![image]()
+When $$\ket{\psi}$$ is in a superposition, however, it does have overlap with both $$\ket{0}$$ and $$\ket{1}$$, and $$a$$ and $$b$$ tell us the size of this overlap. Visually, you can think of this like the 'projection' of $$\ket{\psi}$$ onto $$\ket{0}$$ and $$\ket{1}$$. If $$\ket{\psi}$$ moves closer to $$\ket{0}$$, then its projection onto this axis will get larger, and its projection onto $$\ket{1}$$ will get smaller, and of course vice versa.
 
-$$a$$ and $$b$$ here represent the overlap of $$\ket{\psi}$$ with $$\ket{0}$$ and $$\ket{1}$$ respectively. You can think of this like the projection of $$\ket{\psi}$$ onto $$\ket{0}$$ and $$\ket{1}$$. If $$\ket{\psi}$$ moves closer to $$\ket{0}$$, then its projection onto this axis will get larger, and its projection onto $$\ket{1}$$ will get smaller. 
-
-<!-- <canvas class="real-basis"></canvas> -->
 <figure id="real-basis">
     <figcaption>
         Move $$\ket{\psi}$$ around below to see how $$a$$ and $$b$$ change.
@@ -58,23 +53,31 @@ $$a$$ and $$b$$ here represent the overlap of $$\ket{\psi}$$ with $$\ket{0}$$ an
     </math>
 </figure>
 
-Mathematically, we can get the values of these projections $$a$$ and $$b$$ by performing the **inner product** of $$\ket{\psi}$$ with $$\ket{0}$$ and $$\ket{1}$$, like so:
+Mathematically, we can get the values of these projections $$a$$ and $$b$$ by performing the **inner product** of $$\ket{\psi}$$ with $$\ket{0}$$ and $$\ket{1}$$. If you haven't heard of the inner product before, you might have heard of the **dot product**, which is just a special case of the inner product. For the moment, I'm going to say that this distinction is unimportant (though it will come up again later on).
 
-$$a = \braket{0 \mid \psi}$$
+<!-- $$\braket{0 \mid \psi} = 0 \cdot \psi$$ -->
 
-$$b = \braket{1 \mid \psi}$$
+But what do a and b represent _physically_? Earlier, we said how a qubit can only ever be _measured_ as being in a single eigenstate. [The Born rule][born] is a postulate of quantum mechanics that says the **probability** of measuring $$\ket{\psi}$$ as being in a particular eigenstate is related to these values $$a$$ and $$b$$. Specifically, it's given by the size of these values squared:
 
-If you haven't heard of the inner product before, you might have heard of the **dot product**, which is just a special case of the inner product. For the moment, this distinction is unimportant: 
+Probability of measuring $$\ket{0} = \lvert a \rvert^{2}$$
 
-$$\braket{0 \mid \psi} = 0 \cdot \psi$$
+Probability of measuring $$\ket{1} = \lvert b \rvert^{2}$$
 
-But what do a and b represent _physically_? a and b are called **probability amplitudes**. The Born rule is a postulate of quantum mechanics that says the probability of measuring $$\ket{\psi}$$ as being in a particular eigenstate is given by the modulus of that eigenstate's probability amplitude squared. This means that the probability of measuring $$\ket{\psi}$$ as $$\ket{0}$$ is given by $$\lvert a \rvert^{2}$$, and as $$\ket{1}$$ is given by $$\lvert b \rvert^{2}$$, or to write succinctly:
+This means that the 'closer' $$\ket{\psi}$$ is to $$\ket{0}$$ or $$\ket{1}$$, the **higher the probability** of measuring it in that state. Because of this, we call $$a$$ and $$b$$ **probability amplitudes**.
 
-$$P(\ket{0}) = \lvert a \rvert^{2}$$
+...But why probability _amplitudes_? I guess we can't just call them probabilities, because we have to do something to them first to get the probability out, but why _amplitudes_?
 
-$$P(\ket{1}) = \lvert b \rvert^{2}$$
+If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the state vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. It's important to note here that the function $$\psi(x)$$ and the vector $$\ket{\psi}$$ represent the same quantum state. This can be true due to the fact that **all functions are vectors**. The two representations are completely equivalent.
 
-This means that the 'closer' $$\ket{\psi}$$ is to $$\ket{0}$$ or $$\ket{1}$$, the **higher the probability** of measuring it in that state.
+Exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but, as you may have guessed from the name, they can look very wave-like!
+
+![Wavefunction pictures here]()
+
+So, the probability amplitudes are named from being literal amplitudes of a wavefunction.
+
+![Wavefunction w amplitude???]()
+
+### Adding Complexity
 
 As total probabilities must sum to 1, we therefore also know that:
 
@@ -112,10 +115,16 @@ But the Bloch sphere exists in 3 dimensions, so now instead of one too few dimen
 ### Not all states are distinct 
 The reason for this is that not all _mathematical_ states are _physically_ different from each other.
 
-Rather than writing a complex number in the form x + yi, we could instead use an alternative form: $$re^{i\theta}$$. In this form, r is the distance from 0, and $$\theta$$ is the angle made with the positive x-axis. This means that our equation for $$\psi$$ can be written like this:
+Rather than writing a complex number in the form x + yi, we could instead use an alternative form: $$re^{i\theta}$$. In this form, r is the distance from 0, and $$\theta$$ is the angle made with the positive x-axis. This means that our equation for $$\ket{\psi}$$ can be written like this:
 
-$$\ket{\psi} = re^{i\theta}\ket{0} + re^{i\theta}\ket{1}$$
+$$\ket{\psi} = r_0e^{i\theta_0}\ket{0} + r_0e^{i\theta_1}\ket{1}$$
 
+Using power rules, we can factor out $$e^{i\theta_0}$$, like this:
+
+$$\ket{\psi} = e^{i\theta_0}(r_0\ket{0} + r_0e^{i(\theta_1 - \theta_0)}\ket{1})$$
+
+
+[born]: https://en.wikipedia.org/wiki/Born_rule
 
 <style>
     .real-basis {
