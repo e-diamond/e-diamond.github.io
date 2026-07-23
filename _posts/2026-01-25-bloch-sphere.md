@@ -20,13 +20,15 @@ Classical bits are simple. A bit can exist in one of two states: we often call t
 ## Qubits
 Qubits can be measured as being in one of two **eigenstates**: we often call these the $$\ket{0}$$ state, and the $$\ket{1}$$ state, though really we could call them anything. $$\ket{0}$$ and $$\ket{1}$$ might represent the spin-up and spin-down state of an electron, the ground state and first excited state of a particle, or any other quantum system with two eigenstates. The use of $$\ket{0}$$ and $$\ket{1}$$ is just an abstraction of these physical systems.
 
-We always measure a quantum system as being in just one of these eigenstates, though, up until measurement, it may exist in a **superposition** of eigenstates. If you don't know what a superposition is, then it's just the physics word for a linear combination. And if you don't know what a linear combination is, then it's just the maths word for a kind of addition. We usually call the current state of the quantum system $$\ket{\psi}$$, and we express its superposition like this:
+You might be wondering why $$\ket{0}$$ and $$\ket{1}$$ are in those funny angle brackets. These are used to denote that $$\ket{0}$$ and $$\ket{1}$$ are **vectors**. Representing eigenstates as vectors is useful for a few reasons, one of which is because of a property of quantum systems known as **superposition**.
+
+We always measure a quantum system as being in just one eigenstate, though, up until we interact with it, it may exist in a **superposition** of eigenstates. A superposition is a kind of combination of states. In fact, it's really just the physics word for a linear combination. If you don't know what a linear combination is, then it's just a way of adding vectors together. For example, we could create a new vector, let's call it $$\ket{\psi}$$, like this:
 
 $$\ket{\psi} = a\ket{0} + b\ket{1}$$
 
-$$a$$ and $$b$$ here are numbers that represent the 'amount' of $$\ket{\psi}$$ that is in each of the $$\ket{0}$$ and $$\ket{1}$$ eigenstates. A property of quantum eigenstates is that they are always **orthogonal**. This means that they have no 'overlap': if $$\ket{\psi}$$ is 100% in state $$\ket{1}$$, that necessarily means it is 0% in state $$\ket{0}$$, and vice versa. This makes sense, as we only ever _measure_ a quantum system as being in a single eigenstate.
+and we would say that $$\ket{\psi}$$ is in a superposition of $$\ket{0}$$ and $$\ket{1}$$. $$a$$ and $$b$$ here represent the amount by which $$\ket{\psi}$$ points in either the $$\ket{0}$$ or $$\ket{1}$$ direction. For example, a large value for $$a$$ and a small value for $$b$$ would produce a vector that points mostly in the same direction as $$\ket{0}$$.
 
-When $$\ket{\psi}$$ is in a superposition, however, it does have overlap with both $$\ket{0}$$ and $$\ket{1}$$, and $$a$$ and $$b$$ tell us the size of this overlap. Visually, you can think of this like the 'projection' of $$\ket{\psi}$$ onto $$\ket{0}$$ and $$\ket{1}$$. If $$\ket{\psi}$$ moves closer to $$\ket{0}$$, then its projection onto this axis will get larger, and its projection onto $$\ket{1}$$ will get smaller, and of course vice versa.
+$$\ket{\psi}$$ is the symbol we normally give to the current state of a quantum system, so the equation above is how we represent our qubit being in a superposition of eigenstates. In the interaction below, you can see how the values of $$a$$ and $$b$$ change as we change the vector $$\ket{\psi}$$.
 
 <figure id="real-basis">
     <figcaption>
@@ -53,19 +55,28 @@ When $$\ket{\psi}$$ is in a superposition, however, it does have overlap with bo
     </math>
 </figure>
 
-Mathematically, we can get the values of these projections $$a$$ and $$b$$ by performing the **inner product** of $$\ket{\psi}$$ with $$\ket{0}$$ and $$\ket{1}$$. If you haven't heard of the inner product before, you might have heard of the **dot product**, which is just a special case of the inner product. For the moment, I'm going to say that this distinction is unimportant (though it will come up again later on).
+From this interaction, we can see that we can think about $$a$$ and $$b$$ as the 'projection' of $$\ket{\psi}$$ onto $$\ket{0}$$ and $$\ket{1}$$. If you know some trigonometry, you'll notice that this means we can get the values of $$a$$ and $$b$$ by performing the **cosine** of the angle between $$\ket{\psi}$$ and $$\ket{0}$$ and $$\ket{1}$$ respectively. If you know some vector maths, you'll notice that this means we can get the values of $$a$$ and $$b$$ by performing the **dot product** of $$\ket{\psi}$$ with $$\ket{0}$$ and $$\ket{1}$$ respectively.
+<!-- TODO: dot product/cosine. talk about braket notation?? -->
 
-<!-- $$\braket{0 \mid \psi} = 0 \cdot \psi$$ -->
+Something you'll notice is that when $$\ket{\psi}$$ is in an eigenstate (that is, when it lies entirely in either the $$\ket{0}$$ or $$\ket{1}$$ direction), its projection onto that state becomes 1, and its projection onto the other state becomes 0. Earlier, we said that a quantum system can only ever be measured as being in a single eigenstate, not a superposition, so this makes sense! If this weren't the case, then when $$\ket{\psi}$$ is in an eigenstate, its projection onto the other state would be **non-zero**, meaning it would still be in a superposition! A property of quantum eigenstates is that they are always **orthogonal**, which is what prevents this from happening. We say states are orthogonal when they have 0 projection onto each other, which is why $$\ket{0}$$ and $$\ket{1}$$ are drawn at right-angles to each other above.
 
-But what do a and b represent _physically_? Earlier, we said how a qubit can only ever be _measured_ as being in a single eigenstate. [The Born rule][born] is a postulate of quantum mechanics that says the **probability** of measuring $$\ket{\psi}$$ as being in a particular eigenstate is related to these values $$a$$ and $$b$$. Specifically, it's given by the size of these values squared:
+Finally, you probably noticed that the values of $$a$$ and $$b$$ are never greater than 1. This is due to what $$a$$ and $$b$$ represent _physically_. We know that $$\ket{\psi}$$ must always collapse into an eigenstate upon measurement - $$a$$ and $$b$$ actually tell us the **probability** of $$\ket{\psi}$$ collapsing into either $$\ket{0}$$ or $$\ket{1}$$. This means that the 'closer' $$\ket{\psi}$$ is to $$\ket{0}$$ or $$\ket{1}$$, the **higher the probability** of measuring it in that state. [The Born rule][born] is a postulate of quantum mechanics that says that, specifically, the probability is given by the size of these values squared:
 
 Probability of measuring $$\ket{0} = \lvert a \rvert^{2}$$
 
 Probability of measuring $$\ket{1} = \lvert b \rvert^{2}$$
 
-This means that the 'closer' $$\ket{\psi}$$ is to $$\ket{0}$$ or $$\ket{1}$$, the **higher the probability** of measuring it in that state. Because of this, we call $$a$$ and $$b$$ **probability amplitudes**.
+As total probabilities must always add up to 1, this means we have the following constraint on our system:
 
-...But why probability _amplitudes_? I guess we can't just call them probabilities, because we have to do something to them first to get the probability out, but why _amplitudes_?
+$$\lvert a \rvert^{2} + \lvert b \rvert^{2} = 1$$
+
+This is why the state vector $$\ket{\psi}$$ always has a length of 1.
+
+Because of their relation to probability, we call $$a$$ and $$b$$ **probability amplitudes**.
+
+### The wavefunction
+
+...But why _amplitudes_? I guess we can't just call them probabilities, because we have to do something to them first to get the probability out, but _amplitudes_?
 
 If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the state vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. It's important to note here that the function $$\psi(x)$$ and the vector $$\ket{\psi}$$ represent the same quantum state. This can be true due to the fact that **all functions are vectors**. The two representations are completely equivalent.
 
