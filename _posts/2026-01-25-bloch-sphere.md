@@ -6,8 +6,9 @@ imports:
     p5: "https://cdn.jsdelivr.net/npm/p5@2.2.3/+esm"
 scripts:
      - assets/posts/bloch-sphere/real-basis.js
-     - assets/posts/bloch-sphere/complex-plane.js
-     - assets/posts/bloch-sphere/bloch-sphere.js
+     - assets/posts/bloch-sphere/wavefunction.js
+    #  - assets/posts/bloch-sphere/complex-plane.js
+    #  - assets/posts/bloch-sphere/bloch-sphere.js
 ---
 
 In quantum computing, we have the concept of _qubits_. Qubits are analogous to classical bits in that they have two possible states, akin to the classical bit's **0** and **1**, though differ in the fact that, up until the moment of measurement, they can also exist in a superposition of these states.
@@ -78,7 +79,18 @@ Because of their relation to probability, we call $$a$$ and $$b$$ **probability 
 
 ...But why _amplitudes_? I guess we can't just call them probabilities, because we have to do something to them first to get the probability out, but _amplitudes_?
 
-If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the state vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. It's important to note here that the function $$\psi(x)$$ and the vector $$\ket{\psi}$$ represent the same quantum state. This can be true due to the fact that **all functions are vectors**. The two representations are completely equivalent.
+If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the state vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it.
+
+<figure id="wavefunction">
+    <figcaption>Change the probability amplitudes a and b to see how the function $$\ket{\psi}$$ changes.</figcaption>
+    <div class="controls">
+        <div id="amp-a" class="amplitudes"></div>
+        <div id="amp-b" class="amplitudes"></div>
+    </div>
+    <div id="eigenfunctions"></div>
+</figure>
+
+It's important to note here that the function $$\psi(x)$$ and the vector $$\ket{\psi}$$ represent the same quantum state. This can be true due to the fact that **all functions are vectors**. The two representations are completely equivalent.
 
 Exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but, as you may have guessed from the name, they can look very wave-like!
 
@@ -169,5 +181,18 @@ $$\ket{\psi} = e^{i\theta_0}(r_0\ket{0} + r_0e^{i(\theta_1 - \theta_0)}\ket{1})$
     canvas {
         display: block;
         margin: 1rem auto;
+    }
+
+    figure #eigenfunctions {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+
+    #eigenfunctions canvas {
+        margin: 0;
+    }
+    #wavefunction > canvas {
+        margin: 0 auto;
     }
 </style>
