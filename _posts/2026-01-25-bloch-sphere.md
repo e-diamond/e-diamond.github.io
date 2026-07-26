@@ -79,7 +79,25 @@ Because of their relation to probability, we call $$a$$ and $$b$$ **probability 
 
 ...But why _amplitudes_? I guess we can't just call them probabilities, because we have to do something to them first to get the probability out, but _amplitudes_?
 
-If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the state vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it.
+If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. You might have seen it look something like this:
+
+![images here]()
+
+Of course, exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but it will always be made up of a linear combination (a superposition) of **eigenfunctions**.
+
+Hmm, this sounds familiar. Could it be that $$\psi(x)$$ is a superposition of eigenfunctions in the same way that $$\ket{\psi}$$ is a superposition of eigenvectors?
+
+Yes! In fact, the function $$\psi(x)$$ _is_ the vector $$\ket{\psi}$$. I'll say it again: $$\psi(x)$$ and $$\ket{\psi}$$ are _the same object_. This can be true because **all functions are vectors**.
+
+Naturally then, it follows that the eigenstates $$\ket{0}$$ and $$\ket{1}$$ can also be drawn as functions. Here is an example of two possible energy eigenstates - a ground state, and an excited state:
+
+![energy eigenfunctions]()
+
+You'll notice that these functions are waves. With amplitudes! In fact, when we combine $$\ket{0}$$ and $$\ket{1}$$ to create $$\ket{\psi}$$, $$a$$ and $$b$$ in this equation:
+
+$$\ket{\psi} = a\ket{0} + b\ket{1}$$
+
+are the amplitudes of these waves! This is the reason why $$a$$ and $$b$$ are called probability amplitudes - they are the _literal_ amplitudes of these eigenstates! In the interaction below, you can change the values of $$a$$ and $$b$$ to see how this changes the shape of the wavefunction $$\ket{\psi}$$.
 
 <figure id="wavefunction">
     <figcaption>Change the probability amplitudes a and b to see how the function $$\ket{\psi}$$ changes.</figcaption>
@@ -90,21 +108,9 @@ If you've ever studied some quantum mechanics, you've probably met $$\psi$$ befo
     <div id="eigenfunctions"></div>
 </figure>
 
-It's important to note here that the function $$\psi(x)$$ and the vector $$\ket{\psi}$$ represent the same quantum state. This can be true due to the fact that **all functions are vectors**. The two representations are completely equivalent.
-
-Exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but, as you may have guessed from the name, they can look very wave-like!
-
-![Wavefunction pictures here]()
-
-So, the probability amplitudes are named from being literal amplitudes of a wavefunction.
-
-![Wavefunction w amplitude???]()
-
 ### Adding Complexity
 
-As total probabilities must sum to 1, we therefore also know that:
 
-$$\lvert a \rvert^{2} + \lvert b \rvert^{2} = 1$$
 
 
 ## The Bloch Sphere
