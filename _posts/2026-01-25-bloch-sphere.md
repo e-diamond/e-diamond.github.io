@@ -7,7 +7,7 @@ imports:
 scripts:
      - assets/posts/bloch-sphere/real-basis.js
      - assets/posts/bloch-sphere/wavefunction.js
-    #  - assets/posts/bloch-sphere/complex-plane.js
+     - assets/posts/bloch-sphere/complex-plane.js
     #  - assets/posts/bloch-sphere/bloch-sphere.js
 ---
 
@@ -100,7 +100,7 @@ $$\ket{\psi} = a\ket{0} + b\ket{1}$$
 are the amplitudes of these waves! This is the reason why $$a$$ and $$b$$ are called probability amplitudes - they are the _literal_ amplitudes of these eigenstates! In the interaction below, you can change the values of $$a$$ and $$b$$ to see how this changes the shape of the wavefunction $$\ket{\psi}$$.
 
 <figure id="wavefunction">
-    <figcaption>Change the probability amplitudes a and b to see how the function $$\ket{\psi}$$ changes.</figcaption>
+    <figcaption>Change the probability amplitudes $$a$$ and $$b$$ to see how the function $$\ket{\psi}$$ changes. (the sliders will be automatically adjusted so that  $$\lvert a \rvert^{2} + \lvert b \rvert^{2} = 1$$)</figcaption>
     <div class="controls">
         <div id="amp-a" class="amplitudes"></div>
         <div id="amp-b" class="amplitudes"></div>
@@ -110,8 +110,43 @@ are the amplitudes of these waves! This is the reason why $$a$$ and $$b$$ are ca
 
 ### Adding Complexity
 
+I must now confess that I have told you a lie. Or, well, more that I have omitted a truth. The functions above aren't actually static, like I've shown them - they evolve over time. Specifically, they **rotate**, like this:
 
+<!-- TODO: rotating eigenfunctions -->
 
+This of course means that $$a$$ and $$b$$, their amplitudes, must rotate. But how do we keep track of this rotation? A single number surely won't do it!
+
+Well, perhaps a single **real** number won't do it. The real numbers are the ones that lay on the number line, like this:
+
+Using the real numbers, there _is_ one _specific_ kind of rotation we can do - a rotation of 180deg. We do this by flipping the sign, which is what happens when we multiply by **-1**. 
+
+But, in order to see a rotation by any other angle, we need at least 2 dimensions - more than just the single dimension that the real number line gives us. The special number $$i$$ is a number that rotates by 90deg when we multiply by it. Because two 90deg rotations make a 180deg rotation, we know that multiplying by $$i$$ twice is the same as multiplying by -1, so therefore $$i^2 = -1$$, or $$i = \sqrt{-1}$$.
+
+$$i$$ is what we call an **imaginary number**. Because multiplying by imaginary numbers rotates by 90 deg, we can visualise them as laying on an 'imaginary' number line perpendicular to the real number line. We can now use these two number lines to describe a set of **2-dimensional** numbers which we can use for our rotations - we call these the **complex numbers**.
+
+**Complex numbers** are numbers that have a **real** component and an **imaginary** component. We could write some complex number $$z$$ like this:
+
+$$z = \alpha + \beta i$$
+
+where $$\alpha$$ is the real part and $$\beta$$ is the imaginary part. We can visualise them as laying on a plane:
+
+<figure id="complex-plane">
+    <figcaption>
+        Explore where different complex numbers lay on the complex plane.
+    </figcaption>
+</figure>
+
+However, as we're interested in rotations, there's also a different way we can write them that will be more useful to us. Instead of writing out their real and imaginary parts explicitly, we could instead write them using their **magnitude** (their distance from 0), and the **angle** they make with the real axis. Click the button on the interaction above to see how $$z$$ looks when written in this form.
+
+...Okay, but why is that $$e$$ there?! Great question! $$e$$ is actually shorthand for a function named $$\exp()$$, called the **exponential function**, and its exponent is the value we input into that function, so $$e^{i \theta} = \exp(i \theta)$$. The form of the $$\exp()$$ function means that, when we input a number multiplied by $$i$$, it acts as a combination of the **sine** and **cosine** functions. See how below!
+
+<!-- complex sin/cos -->
+
+### Interference
+
+But, $$a$$ and $$b$$ are probabilities! What does it mean for probabilities to rotate?!
+
+Well, remember that $$a$$ and $$b$$ are actually just probability amplitudes.
 
 ## The Bloch Sphere
 
