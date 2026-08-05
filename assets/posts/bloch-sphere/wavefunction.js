@@ -1,5 +1,7 @@
 import p5 from "p5";
 import VectorViz from "./vectorviz.esm.min.js";
+import ef from "./eigenfunctions.js";
+import { Complex } from "./complex.mjs";
 
 let container = document.querySelector('#wavefunction');
 let eigencontainer = document.querySelector('#eigenfunctions');
@@ -7,23 +9,16 @@ let eigencontainer = document.querySelector('#eigenfunctions');
 let w = container.offsetWidth*0.9;
 let h = window.innerHeight/2;
 
-function eigenFactory(n, amp) {
-    return function(w, h, x) {
-        let scale = amp*h*0.4;
-        let base = x*Math.PI/w;
+let a = new Complex({arg: Math.PI/4, abs: 1});
+let b = a;
 
-        return scale*Math.sin(n*base);
-    }
-}
-
-function drawFunction(s, width, height, func) {
-    let points = 300;
-    let dx = width/points;
-    for (let i = 0; i < points; i++) {
-        let x = i*dx;
-        s.circle(x, func(width, height, x), 5);
-    }
-}
+let ground = ef.createInfPotEigen(1, a);
+let excite = ef.createInfPotEigen(2, b);
+let superpos = new ef(1, function(x) {
+    let e1 = ground.form(x);
+    let e2 = excite.form(x);
+    return e1.add(e2);
+});
 
 // ground state eigenfunction
 new p5(function(s) {
@@ -42,10 +37,13 @@ new p5(function(s) {
 
         x = vv.createVector(s.createVector(width, 0), 'white');
         ket0 = vv.createVector(s.createVector(0, height), 'white');
+
+        a = new Complex({arg: Math.PI/4, abs: 1});
     }
 
     s.draw = function() {
         s.background(50);
+        s.orbitControl();
 
         vv.setup();
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
@@ -59,10 +57,8 @@ new p5(function(s) {
         x.draw();
         x.label('x');
 
-        s.noStroke();
-        s.fill('red');
-        const ground = eigenFactory(1, sliders[0].value);
-        drawFunction(s, width, height, ground);
+        ground.amp = new Complex({arg: sliders[0].value, abs: 1});
+        ground.draw(s, width, height*0.4, 'red', 300);
     }
 
 }, eigencontainer);
@@ -72,6 +68,7 @@ new p5(function(s) {
     let width, height;
     let vv;
     let ket1, x;
+    let b;
 
     s.setup = function() {
         s.createCanvas(
@@ -84,10 +81,13 @@ new p5(function(s) {
 
         x = vv.createVector(s.createVector(width, 0), 'white');
         ket1 = vv.createVector(s.createVector(0, height), 'white');
+
+        b = new Complex({arg: Math.PI/4, abs: 1});
     }
 
     s.draw = function() {
         s.background(50);
+        s.orbitControl();
 
         vv.setup();
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
@@ -101,10 +101,8 @@ new p5(function(s) {
         x.draw();
         x.label('x');
 
-        s.noStroke();
-        s.fill('blue');
-        const excite = eigenFactory(2, sliders[1].value);
-        drawFunction(s, width, height, excite);
+        excite.amp = new Complex({arg: sliders[1].value, abs: 1});
+        excite.draw(s, width, height*0.4, 'blue', 300);
     }
 
 }, eigencontainer);
@@ -130,6 +128,7 @@ new p5(function(s) {
 
     s.draw = function() {
         s.background(50);
+        s.orbitControl();
 
         vv.setup();
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
@@ -143,22 +142,14 @@ new p5(function(s) {
         r.draw();
         r.label('x');
 
-        // draw sine waves 
-        s.noStroke();
-        s.fill('#f0f');
-        function superposition(w, h, x) {
-            const ground = eigenFactory(1, sliders[0].value);
-            const excite = eigenFactory(2, sliders[1].value);
-            return ground(w, h, x) + excite(w, h, x);
-        }
-        drawFunction(s, width, height, superposition);
+        superpos.draw(s, width, height*0.4, '#f0f', 300);
     }
 
 }, container);
 
 function normalise(event) {
     let target = event.target;
-    let new_val = Math.sqrt(1 - target.value**2);
+    let new_val = Math.PI/2 - target.value;
     if (target === sliders[0]) {
         sliders[1].value = new_val;
     } else {
@@ -166,17 +157,24 @@ function normalise(event) {
     }
 }
 
-let controls = document.querySelector('#wavefunction .controls');
 let amps = document.querySelectorAll('.amplitudes');
-console.log(amps);
 let sliders = [document.createElement('input'), document.createElement('input')];
+let labels = [document.createElement('label'), document.createElement('label')];
 sliders.forEach((sld, i) => {
+    let name = `input-${i}`;
+
     amps[i].appendChild(sld);
     sld.type = 'range';
     sld.min = 0;
-    sld.max = 1;
+    sld.max = Math.PI/2;
     sld.step = 0.01;
-    sld.value = 0.7071;
+    sld.value = Math.PI/4;
+    sld.name = name;
     sld.addEventListener('input', normalise);
-    console.log(sld);
+
+    amps[i].appendChild(labels[i]);
+    labels[i].for = name;
 });
+
+labels[0].appendChild(document.createTextNode("a"));
+labels[1].appendChild(document.createTextNode("b"));
