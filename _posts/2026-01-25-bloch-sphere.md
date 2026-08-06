@@ -139,6 +139,29 @@ where $$\alpha$$ is the real part and $$\beta$$ is the imaginary part. We can vi
     <figcaption>
         Explore where different complex numbers lay on the complex plane.
     </figcaption>
+    <button id="complex-btn">Show exponential form</button>
+    <div>
+        <math id="standard-form" class="complex-form">
+            <mi>z</mi>
+            <mo>=</mo>
+            <mn id="real-part">α</mn>
+            <mo>+</mo>
+            <mn id="im-part">β</mn>
+            <mi>i</mi>
+        </math>
+        <math id="exp-form" class="complex-form">
+            <mi>z</mi>
+            <mo>=</mo>
+            <mn id="abs">r</mn>
+            <msup>
+                <mi>e</mi>
+                <mrow>
+                    <mn id="arg">θ</mn>
+                    <mi>i</mi>
+                </mrow>
+            </msup>
+        </math>
+    </div>
 </figure>
 
 However, as we're interested in rotations, there's also a different way we can write them that will be more useful to us. Instead of writing out their real and imaginary parts explicitly, we could instead write them using their **magnitude** (their distance from 0), and the **angle** they make with the real axis. Click the button on the interaction above to see how $$z$$ looks when written in this form.
@@ -196,7 +219,7 @@ $$\ket{\psi} = e^{i\theta_0}(r_0\ket{0} + r_0e^{i(\theta_1 - \theta_0)}\ket{1})$
 [born]: https://en.wikipedia.org/wiki/Born_rule
 
 <style>
-    .real-basis {
+    .real-basis, .complex-form {
         display: block;
         margin: 1rem;
         text-align: center;
@@ -229,6 +252,16 @@ $$\ket{\psi} = e^{i\theta_0}(r_0\ket{0} + r_0e^{i(\theta_1 - \theta_0)}\ket{1})$
         margin: 1rem auto;
     }
 
+    figure#complex-plane {
+        position: relative;
+    }
+    #complex-btn {
+        all: revert;
+        position: absolute;
+        left: 1rem;
+        top: 2rem;
+    }
+
     figure #eigenfunctions {
         display: flex;
         flex-flow: row wrap;
@@ -240,5 +273,9 @@ $$\ket{\psi} = e^{i\theta_0}(r_0\ket{0} + r_0e^{i(\theta_1 - \theta_0)}\ket{1})$
     }
     #wavefunction > canvas {
         margin: 0 auto;
+    }
+
+    .complex-form#exp-form {
+        display: none;
     }
 </style>
