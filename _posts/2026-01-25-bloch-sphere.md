@@ -7,6 +7,7 @@ imports:
 scripts:
      - assets/posts/bloch-sphere/real-basis.js
      - assets/posts/bloch-sphere/wavefunction.js
+     - assets/posts/bloch-sphere/rotate.js
      - assets/posts/bloch-sphere/complex-plane.js
     #  - assets/posts/bloch-sphere/bloch-sphere.js
 ---
@@ -112,7 +113,11 @@ are the amplitudes of these waves! This is the reason why $$a$$ and $$b$$ are ca
 
 I must now confess that I have told you a lie. Or, well, more that I have omitted a truth. The functions above aren't actually static, like I've shown them - they evolve over time. Specifically, they **rotate**, like this:
 
-<!-- TODO: rotating eigenfunctions -->
+<figure id=rotate>
+    <figcaption>
+        Move the scene around to see how these eigenfunctions rotate.
+    </figcaption>
+</figure>
 
 This of course means that $$a$$ and $$b$$, their amplitudes, must rotate. But how do we keep track of this rotation? A single number surely won't do it!
 
