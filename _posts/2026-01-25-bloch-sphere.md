@@ -170,11 +170,19 @@ However, as we're interested in rotations, there's also a different way we can w
 
 <!-- complex sin/cos -->
 
+Because it only controls rotation, and not magnitude, we call $$\exp(i \theta)$$ the **phase** of the state.
+
 ### Interference
 
-But, $$a$$ and $$b$$ are probabilities! What does it mean for probabilities to rotate?!
+Okay, so let's recap: $$\ket{\psi}$$ is a quantum state made up of a superposition of two eigenstates $$\ket{0}$$ and $$\ket{1}$$. $$a$$ and $$b$$ are the amplitudes of the functions $$\ket{0}$$ and $$\ket{1}$$ - these amplitudes rotate over time, so $$a$$ and $$b$$ are complex numbers in order to describe this rotation. $$a$$ and $$b$$ also give us the probability of measuring $$\ket{\psi}$$ as being in either the $$\ket{0}$$ or $$\ket{1}$$ state.
 
-Well, remember that $$a$$ and $$b$$ are actually just probability amplitudes.
+...Wait, hang on. $$a$$ and $$b$$ rotate and are complex but are also probabilities?! How does that even work? What does it mean for probabilities to rotate?!
+
+Well, remember that $$a$$ and $$b$$ aren't probabilities by themselves - they're actually just probability amplitudes. We can't measure probability amplitudes, just probabilities, which are given by $$\lvert a \rvert^{2}$$ and $$\lvert b \rvert^{2}$$. The notation $$\lvert a \rvert$$ and $$\lvert b \rvert$$ means that we only care about the **magnitude** of $$a$$ and $$b$$, meaning that, when we measure this probability, we lose the phase information anyway.
+
+What?! So why does it matter, then? Was all that work for nothing?! How do we even know $$a$$ and $$b$$ rotate if we can't measure the rotation?!
+
+It's true that we actually _don't_ know the rotation of a particular state, what we call the **global phase**, but that doesn't mean it doesn't matter. Something that we _can_ measure is the **difference in rotation** between two states. We call this the **relative phase**, and it's important because it changes the shape of the resulting wavefunction.
 
 ## The Bloch Sphere
 
