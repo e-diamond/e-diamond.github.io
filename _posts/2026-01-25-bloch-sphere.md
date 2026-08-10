@@ -9,7 +9,7 @@ scripts:
      - assets/posts/bloch-sphere/wavefunction.js
      - assets/posts/bloch-sphere/rotate.js
      - assets/posts/bloch-sphere/complex-plane.js
-    #  - assets/posts/bloch-sphere/bloch-sphere.js
+     - assets/posts/bloch-sphere/bloch-sphere.js
 ---
 
 In quantum computing, we have the concept of _qubits_. Qubits are analogous to classical bits in that they have two possible states, akin to the classical bit's **0** and **1**, though differ in the fact that, up until the moment of measurement, they can also exist in a superposition of these states.
@@ -186,7 +186,15 @@ It's true that we actually _don't_ know the rotation of a particular state, what
 
 ## The Bloch Sphere
 
-Qubit states are often depicted on the **Bloch sphere**, which I will show to you now:
+At the beginning of this article, I showed you how we could think of $$\ket{\psi}$$ as being projections onto $$\ket{0}$$ and $$\ket{1}$$, with $$a$$ and $$b$$ being the size of these projections:
+
+<!-- repeat of real-basis here -->
+
+But, now we know that this is a bit of a simplification. $$a$$ and $$b$$ can't be represented as one-dimensional numbers like this; they're **complex**, meaning we need **two dimensions** to represent each of them. This means that we need a total of **four dimensions** in order to represent both.
+
+...Hmm, this is a problem. Unfortunately, we only live in three dimensions, so we can't visualise four dimensions very well at all (well, I suppose there's a chance _you_ can, but I certainly can't). So how are we meant to have a good way of representing all of our qubit states??
+
+The answer is something called the **Bloch sphere**, which I will show to you now:
 
 <figure id="bloch-sphere">
     <figcaption>
@@ -194,34 +202,30 @@ Qubit states are often depicted on the **Bloch sphere**, which I will show to yo
     </figcaption>
 </figure>
 
-Something you may notice about the Bloch sphere is that it is [almost, but not quite, entirely unlike](https://en.wikiquote.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy#Chapter_17) what I've just shown you. For a start, $$\ket{0}$$ and $$\ket{1}$$ lay on opposite ends of the same axis, which is quite strange. Shouldn't the orthogonal states be drawn, well, _orthogonally_? Also, our coordinate system is 3-dimensional now - where did the extra dimension come from?!
+You may notice it has some familiar elements. We still have our state vector $$\ket{\psi}$$, for example. And $$\ket{0}$$ and $$\ket{1}$$ are still _there_, albeit in a rather... _strange_ position.
 
-First, let's look at the dimensionality. The 2D picture we had above only works if $$a$$ and $$b$$ are **real numbers**; however, this is not generally the case. $$a$$ and $$b$$ are typically **complex numbers**, which means that $$\ket{\psi}$$ doesn't exist in the 2D real space ($$\mathbb{R}^2$$), but, in fact, in the 2D complex space ($$\mathbb{C}^2$$).
+But mostly it looks quite different. There are more dimensions, which we expected (though how are we getting away with only 3?), and, oh yeah, _what's that sphere doing there_???
 
-Complex numbers consist of two parts - a **real** part, and an **imaginary** part. Because of this, we can represent a single complex number by using two real numbers - one for each of these parts. One way of writing these complex numbers is in the form $$x + yi$$, where x is the real component, and y is the imaginary component.
+First, let's look at the dimensionality. We know $$a$$ and $$b$$ are complex numbers, so let's write them out in their complex exponential form, as a magnitude and a phase:
 
-<figure id="complex-plane">
-    <figcaption>
-        Explore where different complex numbers lay on the complex plane.
-    </figcaption>
-</figure>
+$$a = r_a e^{i\phi_a}$$
 
-This, in effect, makes a single complex number two-dimensional. A fancy maths way of saying this is that $$\mathbb{C}^1$$ is _isomorphic_ to $$\mathbb{R}^2$$ (_iso-_ meaning _same_, and _-morphic_ meaning _shape_).
+$$b = r_b e^{i\phi_b}$$
 
-So, this means that to represent a and b, two complex numbers, we need **four** real numbers, so whatever representation we use needs to be 4-dimensional.
+Here, we can more easily see what we need the four dimensions for: $$r_a, \phi_a, r_b, and \phi_b$$.
 
-But the Bloch sphere exists in 3 dimensions, so now instead of one too few dimensions, we have one too many! 
+We know $$a$$ and $$b$$ are complex numbers, so let's see the equation for $$\ket{\psi}$$ written out with them in their complex exponential form:
 
-### Not all states are distinct 
-The reason for this is that not all _mathematical_ states are _physically_ different from each other.
+$$\ket{\psi} = r_a e^{i\phi_a} \ket{0} + r_b e^{i\phi_b} \ket{1}$$
 
-Rather than writing a complex number in the form x + yi, we could instead use an alternative form: $$re^{i\theta}$$. In this form, r is the distance from 0, and $$\theta$$ is the angle made with the positive x-axis. This means that our equation for $$\ket{\psi}$$ can be written like this:
+In the last section, we spoke about the difference between **global phase**, which we can't measure, and **relative phase**, which we can. As global phase has no physical significance, any time it shows up, we can get rid of it. This is useful to us, as we're trying to reduce the number of dimensions we have to deal with. 
 
-$$\ket{\psi} = r_0e^{i\theta_0}\ket{0} + r_0e^{i\theta_1}\ket{1}$$
+What does that mean for our equation for $$\ket{\psi}$$? It means that we don't actually care about the individual phases of $$a$$ and $$b$$, $$e^{i\phi_a}$$ and $$e^{i\phi_b}$$, we only care about their phase difference, $$e^{i(\phi_b - \phi_a)}$$. This lets us reduce the number of variables from four down to just three: $$r_a$$, $$r_b$$, and $$(\phi_a - \phi_b)$$ which, for simplicity, I'll now write simply as $$\phi$$. Mathematically, what we're doing is factoring out $$e^{i\phi_a}$$. As it multiplies the entire expression, this is the global phase, which we can ignore.
 
-Using power rules, we can factor out $$e^{i\theta_0}$$, like this:
+$$\ket{\psi} = e^{i\phi_a}(r_a \ket{0} + r_b e^{i(\phi_b - \phi_a)} \ket{1})$$
 
-$$\ket{\psi} = e^{i\theta_0}(r_0\ket{0} + r_0e^{i(\theta_1 - \theta_0)}\ket{1})$$
+$$\ket{\psi} = r_a \ket{0} + r_b e^{i\phi} \ket{1}$$
+
 
 
 [born]: https://en.wikipedia.org/wiki/Born_rule
