@@ -206,26 +206,61 @@ You may notice it has some familiar elements. We still have our state vector $$\
 
 But mostly it looks quite different. There are more dimensions, which we expected (though how are we getting away with only 3?), and, oh yeah, _what's that sphere doing there_???
 
-First, let's look at the dimensionality. We know $$a$$ and $$b$$ are complex numbers, so let's write them out in their complex exponential form, as a magnitude and a phase:
+First, let's look at the dimensionality. We know $$a$$ and $$b$$ are complex numbers, so let's write them out in their complex exponential form, as a **magnitude** and a **phase**:
 
 $$a = r_a e^{i\phi_a}$$
 
 $$b = r_b e^{i\phi_b}$$
 
-Here, we can more easily see what we need the four dimensions for: $$r_a, \phi_a, r_b, and \phi_b$$.
-
-We know $$a$$ and $$b$$ are complex numbers, so let's see the equation for $$\ket{\psi}$$ written out with them in their complex exponential form:
+which makes $$\ket{\psi}$$ equal to:
 
 $$\ket{\psi} = r_a e^{i\phi_a} \ket{0} + r_b e^{i\phi_b} \ket{1}$$
 
-In the last section, we spoke about the difference between **global phase**, which we can't measure, and **relative phase**, which we can. As global phase has no physical significance, any time it shows up, we can get rid of it. This is useful to us, as we're trying to reduce the number of dimensions we have to deal with. 
+Here, we can see that we have four different things to keep track of: $$r_a, \phi_a, r_b, \phi_b$$. This is why we need four dimensions. If we want to reduce the number of dimensions we need, we somehow need to track fewer things. But how?
 
-What does that mean for our equation for $$\ket{\psi}$$? It means that we don't actually care about the individual phases of $$a$$ and $$b$$, $$e^{i\phi_a}$$ and $$e^{i\phi_b}$$, we only care about their phase difference, $$e^{i(\phi_b - \phi_a)}$$. This lets us reduce the number of variables from four down to just three: $$r_a$$, $$r_b$$, and $$(\phi_a - \phi_b)$$ which, for simplicity, I'll now write simply as $$\phi$$. Mathematically, what we're doing is factoring out $$e^{i\phi_a}$$. As it multiplies the entire expression, this is the global phase, which we can ignore.
+In the last section, we spoke about the difference between **global phase**, which we can't measure, and **relative phase**, which we can. As global phase has no physical significance, any time it shows up, we can ignore it. 
+
+What does that mean for us? It means that we don't actually care about the individual phases of $$a$$ and $$b$$, $$e^{i\phi_a}$$ and $$e^{i\phi_b}$$, we only care about their phase difference, $$e^{i(\phi_b - \phi_a)}$$. This lets us reduce the number of variables from four down to just three: $$r_a$$, $$r_b$$, and $$(\phi_a - \phi_b)$$ which, for simplicity, I'll now write simply as $$\phi$$. Mathematically, what we're doing is factoring out $$e^{i\phi_a}$$. As it multiplies the entire expression, this is the global phase, which we can ignore.
 
 $$\ket{\psi} = e^{i\phi_a}(r_a \ket{0} + r_b e^{i(\phi_b - \phi_a)} \ket{1})$$
 
 $$\ket{\psi} = r_a \ket{0} + r_b e^{i\phi} \ket{1}$$
 
+This gets us down to just 3 dimensions. We can have one axis representing the real coefficient of $$\ket{0}$$, $$r_a$$, and a plane representing the complex coefficient of $$\ket{1}$$, $$r_b e^{i\phi}$$:
+
+<!-- picture here -->
+
+### The... Sphere?
+
+Great! But, where does the sphere come into it? It is the Bloch _sphere_ after all. Well, remember from earlier that $$\ket{\psi}$$ must always have a magnitude of 1, due to the fact that the probabilities $$\lvert a \rvert^{2}$$ and $$\lvert b \rvert^{2}$$ must always add up to 1. This means that it's confined to the set of points located at a distance of exactly 1 from the origin - in three dimensions, this is a sphere!
+
+So, there we have it. The Bloch sphere:
+
+<!-- hemisphere -->
+
+Hang on, that can't be right. That's only half a sphere! What's going on?
+
+Well, remember when we factored out the phase $$e^{i\phi_a}$$ we left behind just the magnitude of the original $$\ket{0}$$ coefficient: $$r_a$$. Magnitudes are always positive, meaning we don't use the negative half of the z-axis.
+
+So, why is it the Bloch sphere, then? Why not just name it the Bloch hemisphere and call it a day?
+
+The problem is, it actually _is_, topologically, a sphere! How? Let's take a look at a qubit that lays entirely in the $$\ket{0}$$ state:
+
+It points straight up, right? This means that the state $$\ket{\psi} = \ket{0}$$ only has a single representation on the Bloch sphere, no matter what the value of $$\phi$$ is. This is how it should be, as when a qubit lays entirely in an eigenstate there is no relative phase, as the other component goes to 0.
+
+Now look at a qubit that lays entirely in the $$\ket{1}$$ state. It should be the same as in the $$\ket{0}$$ state, independent of $$\phi$$, but in this pseudo-Bloch hemisphere it _isn't_. Instead, we have this entire circle of states all representing the same _physical_ state, $$\ket{\psi} = \ket{1}$$. This whole circle should be collapsed to a single point, as it all represents a single state.
+
+So how do we get our sphere? First, as we're working with a sphere,let's alter our equation for $$\ket{\psi}$$ slightly to use spherical coordinates. This involves rewriting $$r_a$$ and $$r_b$$ in terms of the angle that $$\ket{\psi}$$ makes with the z axis, which we'll call $$\gamma$$:
+
+<!-- pic here -->
+
+This means we can write $$\ket{\psi}$$ as:
+
+$$\ket{\psi} = \cos\gamma\ket{0} + e^{i\phi}\sin\gamma \ket{1}$$
+
+Because we're just rewriting what we already had, the angle $$\gamma$$ will only take us 90deg, forming the hemisphere. However, we can do something sneaky, and define another angle, let's call it $$\theta$$, which is always double whatever $$\gamma$$ is: $$\theta = 2\gamma$$.
+
+This way, when $$\gamma$$ gets to 90deg, $$\theta$$ reaches all the way to 180, forming a sphere. This also means that the entire $$\ket{1}$$ plane collapses to a single point opposite that of $$\ket{0}$$ on the z-axis.
 
 
 [born]: https://en.wikipedia.org/wiki/Born_rule
