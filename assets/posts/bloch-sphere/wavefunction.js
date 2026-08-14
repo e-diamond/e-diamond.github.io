@@ -9,7 +9,7 @@ let eigencontainer = document.querySelector('#eigenfunctions');
 let w = container.offsetWidth*0.9;
 let h = window.innerHeight/2;
 
-let a = new Complex({arg: Math.PI/4, abs: 1});
+let a = new Complex({arg: 0, abs: 0.71});
 let b = a;
 
 let ground = ef.createInfPotEigen(1, a);
@@ -38,12 +38,12 @@ new p5(function(s) {
         x = vv.createVector(s.createVector(width, 0), 'white');
         ket0 = vv.createVector(s.createVector(0, height), 'white');
 
-        a = new Complex({arg: Math.PI/4, abs: 1});
+        a = new Complex({arg: 0, abs: 0.71});
     }
 
     s.draw = function() {
         s.background(50);
-        s.orbitControl();
+        s.orbitControl(0, 0, 1);
 
         vv.setup();
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
@@ -57,7 +57,7 @@ new p5(function(s) {
         x.draw();
         x.label('x');
 
-        ground.amp = new Complex({arg: sliders[0].value, abs: 1});
+        ground.amp = new Complex({arg: 0, abs: sliders[0].value});
         ground.draw(s, width, height*0.4, 'red', 300);
     }
 
@@ -82,12 +82,12 @@ new p5(function(s) {
         x = vv.createVector(s.createVector(width, 0), 'white');
         ket1 = vv.createVector(s.createVector(0, height), 'white');
 
-        b = new Complex({arg: Math.PI/4, abs: 1});
+        b = new Complex({arg: 0, abs: 0.71});
     }
 
     s.draw = function() {
         s.background(50);
-        s.orbitControl();
+        s.orbitControl(0, 0, 1);
 
         vv.setup();
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
@@ -101,7 +101,7 @@ new p5(function(s) {
         x.draw();
         x.label('x');
 
-        excite.amp = new Complex({arg: sliders[1].value, abs: 1});
+        excite.amp = new Complex({arg: 0, abs: sliders[1].value});
         excite.draw(s, width, height*0.4, 'blue', 300);
     }
 
@@ -128,7 +128,7 @@ new p5(function(s) {
 
     s.draw = function() {
         s.background(50);
-        s.orbitControl();
+        s.orbitControl(0, 0, 1);
 
         vv.setup();
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
@@ -149,7 +149,7 @@ new p5(function(s) {
 
 function normalise(event) {
     let target = event.target;
-    let new_val = Math.PI/2 - target.value;
+    let new_val = Math.sqrt(1 - target.value**2);
     if (target === sliders[0]) {
         sliders[1].value = new_val;
     } else {
@@ -166,9 +166,9 @@ sliders.forEach((sld, i) => {
     amps[i].appendChild(sld);
     sld.type = 'range';
     sld.min = 0;
-    sld.max = Math.PI/2;
+    sld.max = 1;
     sld.step = 0.01;
-    sld.value = Math.PI/4;
+    sld.value = 0.71;
     sld.name = name;
     sld.addEventListener('input', normalise);
 
