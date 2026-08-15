@@ -1,7 +1,7 @@
 import p5 from "p5";
 import VectorViz from "./vectorviz.esm.min.js";
 
-let container = document.querySelector('#bloch-sphere');
+let container = document.querySelector('#bloch-3d');
 
 new p5(function(s) {
 
@@ -34,10 +34,6 @@ new p5(function(s) {
 
         vv = VectorViz.init('3D', 'RIGHT', s);
         axes = vv.createAxes([-length/2, length/2], 'white');
-        label = vv.createVector(p5.Vector.mult(axes.axes[2].vector, -0.5), 'white');
-
-        psi = vv.createVector(s.createVector(size*s.sin(s.PI/4)*s.cos(s.PI/4), size*s.sin(s.PI/4)*s.sin(s.PI/4), size*s.cos(s.PI/4)), 
-        '#5D9CEA');
     }
 
     s.draw = function() {
@@ -53,15 +49,17 @@ new p5(function(s) {
         s.fill(0, 0, 0, 255);
         axes.draw();
         s.textSize(20);
-        axes.label(['', '', '|0⟩']);
-        s.textAlign(s.LEFT, s.CENTER);
-        label.label('|1⟩');
+        axes.label(['x', 'y', '|0⟩']);
 
-        psi.draw();
-        psi.label('|ψ⟩');
-
-        s.fill(255, 0, 0, 100);
-        s.noStroke();
-        s.sphere(size);
+        if (vv.current_font) {
+            s.stroke('white');
+            s.fill('white');
+            s.textFont(vv.current_font);
+            s.translate(length/3, length/3, 0);
+            s.rotateX(s.PI);
+            s.text('|1⟩', 0, 0);
+        }
+        
     }
+
 }, container);

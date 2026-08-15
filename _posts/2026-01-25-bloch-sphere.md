@@ -10,11 +10,22 @@ scripts:
      - assets/posts/bloch-sphere/rotate.js
      - assets/posts/bloch-sphere/complex-plane.js
      - assets/posts/bloch-sphere/bloch-sphere.js
+    #  - assets/posts/bloch-sphere/bloch-3d.js
+    #  - assets/posts/bloch-sphere/bloch-hemisphere.js
+     - assets/posts/bloch-sphere/circle-1.js
 ---
 
-In quantum computing, we have the concept of _qubits_. Qubits are analogous to classical bits in that they have two possible states, akin to the classical bit's **0** and **1**, though differ in the fact that, up until the moment of measurement, they can also exist in a superposition of these states.
+A **bit** is the smallest unit of information that there is. On or off. A 0 or a 1. Classical computers, like the kind you and I have, can be thought of as machines that manipulate lots of these bits in order to do useful stuff (or, at least stuff that you want it to do - you can be the judge of whether that's useful or not). 
+
+But _quantum_ computers? Well, they're just cooler, right? I mean, look, it's got _quantum_ right there in the name. Even their bits are cool. Because quantum bits- wait, no... ~_qubits_~ (yeah, that sounds cool) can even be 0s and 1s at the same time!...I mean, kinda. Sorta. _How?_
 
 <!-- more -->
+
+When it comes to quantum computers, there's a lot of popular science that doesn't go much beyond this. And, if you do go looking for something more substantial, there's a decent amount of higher-level, computer science stuff about quantum algorithms, but very little in the quite frankly massive gulf between these two options. So I thought I'd write about the qubit. Just the qubit. What it is and how it works. 
+
+I'll also talk about the Bloch sphere, a way of representing qubit states that gets thrown at you very often very early with no explanation as to why it's used or why it looks like that. Again, it is difficult to find explanations between the extremes of 'substitute these trig identities and carry on' and 'hope you know your 4D topology', so I've tried to find a kind of "middle-ground" explanation to bridge the gap.
+
+You don't need an extensive maths background to read this, and you don't need to know any quantum mechanics as I'll introduce it here. You should be comfortable manipulating simple algebraic expressions and know some basic trigonometry, and _ideally_ you're comfortable with using radians to measure angles and know some simple vector operations. I'm in the UK, so I'll say that if you have a strong maths GCSE you'll probably be fine, and if you have a maths A-level you'll definitely be fine. Let's go!
 
 ## Bits
 Classical bits are simple. A bit can exist in one of two states: we often call these the **0** state, and the **1** state, though really we could call them anything. 0 and 1 might represent low voltage and high voltage in a circuit, an uncharged and charged capacitor, or any other system with two states. The use of 0 and 1 is just an abstraction of these physical objects.
@@ -80,9 +91,11 @@ Because of their relation to probability, we call $$a$$ and $$b$$ **probability 
 
 If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. You might have seen it look something like one of these:
 
-![Three possible eigenstates of a qubit. They are all different frequencies of sine waves.]()
+![Three possible eigenstates of a qubit. They are all different frequencies of sine waves.](assets/posts/bloch-sphere/img/1d-wavefunctions.png)
 
 Or maybe something a little more realistic, with more dimensions, like this: 
+
+![](assets/posts/bloch-sphere/img/2d-wavefunctions.png)
 
 Of course, exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but it will always be made up of a linear combination (a superposition) of **eigenfunctions**.
 
@@ -92,7 +105,7 @@ Yes! In fact, the function $$\psi(x)$$ _is_ the vector $$\ket{\psi}$$. I'll say 
 
 Naturally then, it follows that the eigenstates $$\ket{0}$$ and $$\ket{1}$$ can also be drawn as functions. Here is an example of two possible energy eigenstates - a ground state, and an excited state:
 
-![energy eigenfunctions]()
+![energy eigenfunctions](assets/posts/bloch-sphere/img/energy-eigenstates.png)
 
 You'll notice that these functions are waves. With amplitudes! In fact, when we combine $$\ket{0}$$ and $$\ket{1}$$ to create $$\ket{\psi}$$, $$a$$ and $$b$$ in this equation:
 
@@ -125,15 +138,15 @@ Well, perhaps a single **real** number won't do it. The real numbers are the one
 
 ![A number line that runs from -3 to 3.](assets/posts/bloch-sphere/img/number-line.png)
 
-Using the real numbers, there _is_ one _specific_ kind of rotation we can do - a rotation of 180deg. We do this by flipping the sign, which is what happens when we multiply by **-1**. 
+Using the real numbers, there _is_ one _specific_ kind of rotation we can do - a rotation of 180°. We do this by flipping the sign, which is what happens when we multiply by **-1**. 
 
 ![](assets/posts/bloch-sphere/img/number-line-rotate.png)
 
-But, in order to see a rotation by any other angle, we need at least 2 dimensions - more than just the single dimension that the real number line gives us. The special number $$i$$ is a number that rotates by 90deg when we multiply by it. Because two 90deg rotations make a 180deg rotation, we know that multiplying by $$i$$ twice is the same as multiplying by -1, so therefore $$i^2 = -1$$, or $$i = \sqrt{-1}$$.
+But, in order to see a rotation by any other angle, we need at least 2 dimensions - more than just the single dimension that the real number line gives us. The special number $$i$$ is a number that rotates by 90° when we multiply by it. Because two 90° rotations make a 180° rotation, we know that multiplying by $$i$$ twice is the same as multiplying by -1, so therefore $$i^2 = -1$$, or $$i = \sqrt{-1}$$.
 
 ![](assets/posts/bloch-sphere/img/number-line-i.png)
 
-$$i$$ is what we call an **imaginary number**. Because multiplying by imaginary numbers rotates by 90 deg, we can visualise them as laying on an 'imaginary' number line perpendicular to the real number line. We can now use these two number lines to describe a set of **2-dimensional** numbers which we can use for our rotations - we call these the **complex numbers**.
+$$i$$ is what we call an **imaginary number**. Because multiplying by imaginary numbers rotates by 90°, we can visualise them as laying on an 'imaginary' number line perpendicular to the real number line. We can now use these two number lines to describe a set of **2-dimensional** numbers which we can use for our rotations - we call these the **complex numbers**.
 
 ![](assets/posts/bloch-sphere/img/number-line-imaginary.png)
 
@@ -188,15 +201,38 @@ Well, remember that $$a$$ and $$b$$ aren't probabilities by themselves - they're
 
 What?! So why does it matter, then? Was all that work for nothing?! How do we even know $$a$$ and $$b$$ rotate if we can't measure the rotation?!
 
-It's true that we actually _don't_ know the rotation of a particular state, what we call the **global phase**, but that doesn't mean it doesn't matter. Something that we _can_ measure is the **difference in rotation** between two states. We call this the **relative phase**, and it's important because it changes the shape of the resulting wavefunction.
+It's true that we actually _don't_ know the rotation of a particular state, what we call the **global phase**, but that doesn't mean it doesn't matter. Something that we _can_ measure is the **difference in rotation** between two states. We call this the **relative phase**, and we can detect it because it changes how the $$\ket{0}$$ and $$\ket{1}$$ states add together, or **interfere** with each other, which changes the shape of the resulting wavefunction.
 
-The shape of the wavefunction matters because it changes how it interacts 
+Even though we can't detect the wavefunction directly, its shape matters because it determines how the qubit will behave when we perform operations on it, like applying quantum logic gates. You may have been wondering how we ever get any information out of a quantum computer if every measurement is probabilistic. This interference of states is how. Programming a quantum computer involves applying quantum logic gates in such a way that all the outcomes you don't want to see to **destructively interfere** with each other, or cancel out, so that you have the highest probability of measuring the correct answer.
 
 ## The Bloch Sphere
 
 At the beginning of this article, I showed you how we could think of $$\ket{\psi}$$ as being projections onto $$\ket{0}$$ and $$\ket{1}$$, with $$a$$ and $$b$$ being the size of these projections:
 
-<!-- repeat of real-basis here -->
+<figure id="real-basis-2">
+    <figcaption>
+        Move $$\ket{\psi}$$ around below to see how $$a$$ and $$b$$ change.
+    </figcaption>
+    <math class="real-basis">
+        <mfenced open="|" close="〉">
+            <mi>ψ</mi>
+        </mfenced>
+
+        <mo>=</mo>
+
+        <mn id="co-a">a</mn>
+        <mfenced open="|" close="〉">
+            <mn>0</mn>
+        </mfenced>
+
+        <mo>+</mo>
+
+        <mn id="co-b">b</mn>
+        <mfenced open="|" close="〉">
+            <mn>1</mn>
+        </mfenced>    
+    </math>
+</figure>
 
 But, now we know that this is a bit of a simplification. $$a$$ and $$b$$ can't be represented as one-dimensional numbers like this; they're **complex**, meaning we need **two dimensions** to represent each of them. This means that we need a total of **four dimensions** in order to represent both.
 
@@ -234,9 +270,11 @@ $$\ket{\psi} = e^{i\phi_a}(r_a \ket{0} + r_b e^{i(\phi_b - \phi_a)} \ket{1})$$
 
 $$\ket{\psi} = r_a \ket{0} + r_b e^{i\phi} \ket{1}$$
 
-This gets us down to just 3 dimensions. We can have one axis representing the real coefficient of $$\ket{0}$$, $$r_a$$, and a plane representing the complex coefficient of $$\ket{1}$$, $$r_b e^{i\phi}$$:
+This gets us down to just 3 dimensions. We can have the z-axis representing the real coefficient of $$\ket{0}$$, $$r_a$$, and the x-y plane representing the complex coefficient of $$\ket{1}$$, $$r_b e^{i\phi}$$:
 
-<!-- picture here -->
+<!-- <figure id="bloch-3d">
+</figure> -->
+![](assets/posts/bloch-sphere/img/bloch-3d.png)
 
 ### The... Sphere?
 
@@ -244,7 +282,9 @@ Great! But, where does the sphere come into it? It is the Bloch _sphere_ after a
 
 So, there we have it. The Bloch sphere:
 
-<!-- hemisphere -->
+<!-- <figure id="bloch-hemisphere">
+</figure> -->
+![](assets/posts/bloch-sphere/img/bloch-hemisphere.png)
 
 Hang on, that can't be right. That's only half a sphere! What's going on?
 
@@ -254,21 +294,39 @@ So, why is it the Bloch sphere, then? Why not just name it the Bloch hemisphere 
 
 The problem is, it actually _is_, topologically, a sphere! How? Let's take a look at a qubit that lays entirely in the $$\ket{0}$$ state:
 
+![](assets/posts/bloch-sphere/img/hemisphere-0.png)
+
 It points straight up, right? This means that the state $$\ket{\psi} = \ket{0}$$ only has a single representation on the Bloch sphere, no matter what the value of $$\phi$$ is. This is how it should be, as when a qubit lays entirely in an eigenstate there is no relative phase, as the other component goes to 0.
 
-Now look at a qubit that lays entirely in the $$\ket{1}$$ state. It should be the same as in the $$\ket{0}$$ state, independent of $$\phi$$, but in this pseudo-Bloch hemisphere it _isn't_. Instead, we have this entire circle of states all representing the same _physical_ state, $$\ket{\psi} = \ket{1}$$. This whole circle should be collapsed to a single point, as it all represents a single state.
+Now look at a qubit that lays entirely in the $$\ket{1}$$ state:
+
+![](assets/posts/bloch-sphere/img/hemisphere-1.png)
+
+ It should be the same as in the $$\ket{0}$$ state, independent of $$\phi$$, but in this pseudo-Bloch hemisphere it _isn't_. Instead, we have this entire circle of states all representing the same _physical_ state, $$\ket{\psi} = \ket{1}$$. This whole circle should be collapsed to a single point, as it all represents a single state.
+
+ <figure id="circle-1">
+    <figcaption>
+        This whole circle represents the same qubit state.
+    </figcaption>
+ </figure>
 
 So how do we get our sphere? First, as we're working with a sphere,let's alter our equation for $$\ket{\psi}$$ slightly to use spherical coordinates. This involves rewriting $$r_a$$ and $$r_b$$ in terms of the angle that $$\ket{\psi}$$ makes with the z axis, which we'll call $$\gamma$$:
 
-<!-- pic here -->
+![](assets/posts/bloch-sphere/img/hemisphere.png)
 
 This means we can write $$\ket{\psi}$$ as:
 
 $$\ket{\psi} = \cos\gamma\ket{0} + e^{i\phi}\sin\gamma \ket{1}$$
 
-Because we're just rewriting what we already had, the angle $$\gamma$$ will only take us 90deg, forming the hemisphere. However, we can do something sneaky, and define another angle, let's call it $$\theta$$, which is always double whatever $$\gamma$$ is: $$\theta = 2\gamma$$.
+Because we're just rewriting what we already had, the angle $$\gamma$$ will only take us 90°, forming the hemisphere. However, we can do something sneaky, and define another angle, let's call it $$\theta$$, which is always double whatever $$\gamma$$ is: $$\theta = 2\gamma$$.
 
-This way, when $$\gamma$$ gets to 90deg, $$\theta$$ reaches all the way to 180, forming a sphere. This also means that the entire $$\ket{1}$$ plane collapses to a single point opposite that of $$\ket{0}$$ on the z-axis.
+This way, when $$\gamma$$ gets to 90°, $$\theta$$ reaches all the way to 180, forming a sphere. This also means that the entire $$\ket{1}$$ plane collapses to a single point opposite that of $$\ket{0}$$ on the z-axis, exactly like we wanted!:
+
+![](assets/posts/bloch-sphere/img/bloch-sphere-full.png)
+
+We just need to be careful to divide by 2 agian when writing out $$\ket{\psi}$$:
+
+$$\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\phi}\sin\frac{\theta}{2} \ket{1}$$
 
 
 [born]: https://en.wikipedia.org/wiki/Born_rule
