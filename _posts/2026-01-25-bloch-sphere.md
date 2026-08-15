@@ -1,5 +1,5 @@
 ---
-title: "Quantum Computing and the Bloch Sphere"
+title: "So what is a Qubit, anyway?"
 libs:
     - mathjax
 imports:
@@ -16,19 +16,18 @@ In quantum computing, we have the concept of _qubits_. Qubits are analogous to c
 
 <!-- more -->
 
-## Classical Bits
+## Bits
 Classical bits are simple. A bit can exist in one of two states: we often call these the **0** state, and the **1** state, though really we could call them anything. 0 and 1 might represent low voltage and high voltage in a circuit, an uncharged and charged capacitor, or any other system with two states. The use of 0 and 1 is just an abstraction of these physical objects.
 
-## Qubits
 Qubits can be measured as being in one of two **eigenstates**: we often call these the $$\ket{0}$$ state, and the $$\ket{1}$$ state, though really we could call them anything. $$\ket{0}$$ and $$\ket{1}$$ might represent the spin-up and spin-down state of an electron, the ground state and first excited state of a particle, or any other quantum system with two eigenstates. The use of $$\ket{0}$$ and $$\ket{1}$$ is just an abstraction of these physical systems.
 
 You might be wondering why $$\ket{0}$$ and $$\ket{1}$$ are in those funny angle brackets. These are used to denote that $$\ket{0}$$ and $$\ket{1}$$ are **vectors**. Representing eigenstates as vectors is useful for a few reasons, one of which is because of a property of quantum systems known as **superposition**.
 
-We always measure a quantum system as being in just one eigenstate, though, up until we interact with it, it may exist in a **superposition** of eigenstates. A superposition is a kind of combination of states. In fact, it's really just the physics word for a linear combination. If you don't know what a linear combination is, then it's just a way of adding vectors together. For example, we could create a new vector, let's call it $$\ket{\psi}$$, like this:
+We always measure a quantum system as being in just one eigenstate, though, up until we measure it, it may exist in a **superposition** of eigenstates. A superposition is a kind of combination of states. In fact, it's really just the physics word for a linear combination. If you don't know what a linear combination is, then it's just a way of adding vectors together. For example, we could create a new vector, let's call it $$\ket{\psi}$$, like this:
 
 $$\ket{\psi} = a\ket{0} + b\ket{1}$$
 
-and we would say that $$\ket{\psi}$$ is in a superposition of $$\ket{0}$$ and $$\ket{1}$$. $$a$$ and $$b$$ here represent the amount by which $$\ket{\psi}$$ points in either the $$\ket{0}$$ or $$\ket{1}$$ direction. For example, a large value for $$a$$ and a small value for $$b$$ would produce a vector that points mostly in the same direction as $$\ket{0}$$.
+and we would say that $$\ket{\psi}$$ is in a superposition of $$\ket{0}$$ and $$\ket{1}$$. $$a$$ and $$b$$ here represent the amount of $$\ket{0}$$ and $$\ket{1}$$ that $$\ket{\psi}$$ is made up of. For example, a large value for $$a$$ and a small value for $$b$$ would produce a vector that points mostly in the same direction as $$\ket{0}$$.
 
 $$\ket{\psi}$$ is the symbol we normally give to the current state of a quantum system, so the equation above is how we represent our qubit being in a superposition of eigenstates. In the interaction below, you can see how the values of $$a$$ and $$b$$ change as we change the vector $$\ket{\psi}$$.
 
@@ -57,8 +56,7 @@ $$\ket{\psi}$$ is the symbol we normally give to the current state of a quantum 
     </math>
 </figure>
 
-From this interaction, we can see that we can think about $$a$$ and $$b$$ as the 'projection' of $$\ket{\psi}$$ onto $$\ket{0}$$ and $$\ket{1}$$. If you know some trigonometry, you'll notice that this means we can get the values of $$a$$ and $$b$$ by performing the **cosine** of the angle between $$\ket{\psi}$$ and $$\ket{0}$$ and $$\ket{1}$$ respectively. If you know some vector maths, you'll notice that this means we can get the values of $$a$$ and $$b$$ by performing the **dot product** of $$\ket{\psi}$$ with $$\ket{0}$$ and $$\ket{1}$$ respectively.
-<!-- TODO: dot product/cosine. talk about braket notation?? -->
+From this interaction, we can see that we can think about $$a$$ and $$b$$ as the 'projection' of $$\ket{\psi}$$ onto $$\ket{0}$$ and $$\ket{1}$$. If you know some trigonometry, you'll notice that this means we can get the values of $$a$$ and $$b$$ by taking the **cosine** of the angle between $$\ket{\psi}$$ and $$\ket{0}$$ and $$\ket{1}$$ respectively. If you know some vector maths, you'll notice that this means we can also get these values by performing the dot product of $$\ket{\psi}$$ with these vectors.
 
 Something you'll notice is that when $$\ket{\psi}$$ is in an eigenstate (that is, when it lies entirely in either the $$\ket{0}$$ or $$\ket{1}$$ direction), its projection onto that state becomes 1, and its projection onto the other state becomes 0. Earlier, we said that a quantum system can only ever be measured as being in a single eigenstate, not a superposition, so this makes sense! If this weren't the case, then when $$\ket{\psi}$$ is in an eigenstate, its projection onto the other state would be **non-zero**, meaning it would still be in a superposition! A property of quantum eigenstates is that they are always **orthogonal**, which is what prevents this from happening. We say states are orthogonal when they have 0 projection onto each other, which is why $$\ket{0}$$ and $$\ket{1}$$ are drawn at right-angles to each other above.
 
@@ -72,7 +70,7 @@ As total probabilities must always add up to 1, this means we have the following
 
 $$\lvert a \rvert^{2} + \lvert b \rvert^{2} = 1$$
 
-This is why the state vector $$\ket{\psi}$$ always has a length of 1.
+This is why the state vector $$\ket{\psi}$$ always has a length of 1!
 
 Because of their relation to probability, we call $$a$$ and $$b$$ **probability amplitudes**.
 
@@ -80,15 +78,17 @@ Because of their relation to probability, we call $$a$$ and $$b$$ **probability 
 
 ...But why _amplitudes_? I guess we can't just call them probabilities, because we have to do something to them first to get the probability out, but _amplitudes_?
 
-If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. You might have seen it look something like this:
+If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. You might have seen it look something like one of these:
 
-![images here]()
+![Three possible eigenstates of a qubit. They are all different frequencies of sine waves.]()
+
+Or maybe something a little more realistic, with more dimensions, like this: 
 
 Of course, exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but it will always be made up of a linear combination (a superposition) of **eigenfunctions**.
 
 Hmm, this sounds familiar. Could it be that $$\psi(x)$$ is a superposition of eigenfunctions in the same way that $$\ket{\psi}$$ is a superposition of eigenvectors?
 
-Yes! In fact, the function $$\psi(x)$$ _is_ the vector $$\ket{\psi}$$. I'll say it again: $$\psi(x)$$ and $$\ket{\psi}$$ are _the same object_. This can be true because **all functions are vectors**.
+Yes! In fact, the function $$\psi(x)$$ _is_ the vector $$\ket{\psi}$$. I'll say it again: $$\psi(x)$$ and $$\ket{\psi}$$ are _the same object_. This can be true because **all functions are vectors**. This is not intuitive, but it is an important point. If you'd like to know more about how functions are vectors, then [this entry from a previous SoME][func-vec] is excellent.
 
 Naturally then, it follows that the eigenstates $$\ket{0}$$ and $$\ket{1}$$ can also be drawn as functions. Here is an example of two possible energy eigenstates - a ground state, and an excited state:
 
@@ -123,11 +123,19 @@ This of course means that $$a$$ and $$b$$, their amplitudes, must rotate. But ho
 
 Well, perhaps a single **real** number won't do it. The real numbers are the ones that lay on the number line, like this:
 
+![A number line that runs from -3 to 3.](assets/posts/bloch-sphere/img/number-line.png)
+
 Using the real numbers, there _is_ one _specific_ kind of rotation we can do - a rotation of 180deg. We do this by flipping the sign, which is what happens when we multiply by **-1**. 
+
+![](assets/posts/bloch-sphere/img/number-line-rotate.png)
 
 But, in order to see a rotation by any other angle, we need at least 2 dimensions - more than just the single dimension that the real number line gives us. The special number $$i$$ is a number that rotates by 90deg when we multiply by it. Because two 90deg rotations make a 180deg rotation, we know that multiplying by $$i$$ twice is the same as multiplying by -1, so therefore $$i^2 = -1$$, or $$i = \sqrt{-1}$$.
 
+![](assets/posts/bloch-sphere/img/number-line-i.png)
+
 $$i$$ is what we call an **imaginary number**. Because multiplying by imaginary numbers rotates by 90 deg, we can visualise them as laying on an 'imaginary' number line perpendicular to the real number line. We can now use these two number lines to describe a set of **2-dimensional** numbers which we can use for our rotations - we call these the **complex numbers**.
+
+![](assets/posts/bloch-sphere/img/number-line-imaginary.png)
 
 **Complex numbers** are numbers that have a **real** component and an **imaginary** component. We could write some complex number $$z$$ like this:
 
@@ -166,9 +174,7 @@ where $$\alpha$$ is the real part and $$\beta$$ is the imaginary part. We can vi
 
 However, as we're interested in rotations, there's also a different way we can write them that will be more useful to us. Instead of writing out their real and imaginary parts explicitly, we could instead write them using their **magnitude** (their distance from 0), and the **angle** they make with the real axis. Click the button on the interaction above to see how $$z$$ looks when written in this form.
 
-...Okay, but why is that $$e$$ there?! Great question! $$e$$ is actually shorthand for a function named $$\exp()$$, called the **exponential function**, and its exponent is the value we input into that function, so $$e^{i \theta} = \exp(i \theta)$$. The form of the $$\exp()$$ function means that, when we input a number multiplied by $$i$$, it acts as a combination of the **sine** and **cosine** functions. See how below!
-
-<!-- complex sin/cos -->
+...Okay, but why is that $$e$$ there?! Great question! $$e$$ is actually shorthand for a function named $$\exp()$$, called the **exponential function**, and its exponent is the value we input into that function, so $$e^{i \theta} = \exp(i \theta)$$. The form of the $$\exp()$$ function means that, when we input a number multiplied by $$i$$, it acts as a combination of the **sine** and **cosine** functions, which is what causes the rotation.
 
 Because it only controls rotation, and not magnitude, we call $$\exp(i \theta)$$ the **phase** of the state.
 
@@ -183,6 +189,8 @@ Well, remember that $$a$$ and $$b$$ aren't probabilities by themselves - they're
 What?! So why does it matter, then? Was all that work for nothing?! How do we even know $$a$$ and $$b$$ rotate if we can't measure the rotation?!
 
 It's true that we actually _don't_ know the rotation of a particular state, what we call the **global phase**, but that doesn't mean it doesn't matter. Something that we _can_ measure is the **difference in rotation** between two states. We call this the **relative phase**, and it's important because it changes the shape of the resulting wavefunction.
+
+The shape of the wavefunction matters because it changes how it interacts 
 
 ## The Bloch Sphere
 
@@ -264,6 +272,7 @@ This way, when $$\gamma$$ gets to 90deg, $$\theta$$ reaches all the way to 180, 
 
 
 [born]: https://en.wikipedia.org/wiki/Born_rule
+[func-vec]: https://thenumb.at/Functions-are-Vectors
 
 <style>
     .real-basis, .complex-form {
@@ -286,13 +295,6 @@ This way, when $$\gamma$$ gets to 90deg, $$\theta$$ reaches all the way to 180, 
         margin-left: 1rem;
         font-style: italic;
     }
-    /* figcaption::before {
-        content: url('assets/posts/bloch-sphere/touch.png');
-        zoom: 20%;
-        margin: 0 1rem;
-        display: inline-block;
-        vertical-align: middle;
-    } */
 
     canvas {
         display: block;
