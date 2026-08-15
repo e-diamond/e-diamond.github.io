@@ -13,10 +13,9 @@ new p5(function(s) {
     let dom_abs, dom_arg;
 
     let length;
-    let vv, axes;
+    let vv, im_ax, real_ax;
     let z;
     let real, imag;
-    // let mag, angle;
 
     s.setup = function() {
 
@@ -52,7 +51,8 @@ new p5(function(s) {
         }
 
         vv = VectorViz.init('2D', 'RIGHT', s);
-        axes = vv.createAxes([-length/2, length/2], 'white');
+        real_ax = vv.createVector(s.createVector(s.width*factor), 'white');
+        im_ax = vv.createVector(s.createVector(0, s.height*factor), 'white');
 
         z = vv.createVector(s.createVector(50, 50), '#5D9CEA', false);
 
@@ -74,8 +74,14 @@ new p5(function(s) {
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
         s.textSize(20);
 
-        axes.draw();
-        axes.label(['Re', 'Im']);
+        s.push();
+        s.translate(-s.width*0.4, 0);
+        real_ax.draw();
+        real_ax.label('Re');
+        s.translate(s.width*0.4, -s.height*0.4);
+        im_ax.draw();
+        im_ax.label('Im');
+        s.pop();
 
         s.noStroke();
         s.fill(z.color);
@@ -86,9 +92,7 @@ new p5(function(s) {
         if (std_form) {
             s.translate(z.vector);
             real.draw();
-            real.label(`${Math.round(z.vector.x)}`);
             imag.draw();
-            imag.label(`${Math.round(z.vector.y)}`);
         } else {
             z.draw();
             let pos_angle = z.vector.heading();
