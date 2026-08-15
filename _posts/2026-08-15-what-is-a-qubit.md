@@ -1,5 +1,6 @@
 ---
 title: "So what is a Qubit, anyway?"
+image: assets/posts/bloch-sphere/img/qubit-header.png
 tags: science physics SoME5
 libs:
     - mathjax
