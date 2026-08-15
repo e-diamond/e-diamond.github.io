@@ -1,5 +1,6 @@
 ---
 title: "So what is a Qubit, anyway?"
+tags: science physics SoME5
 libs:
     - mathjax
 imports:
