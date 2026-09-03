@@ -34,14 +34,14 @@
     }
 
     img {
-        height: 33%;
+        height: 25vh;
         flex: 0 0 auto;
         object-fit: cover;
         order: -1;
     }
 
     .p-summary {
-        flex-grow: 1;
+        flex: 1 1 auto;
     }
 }
 
