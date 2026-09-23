@@ -22,6 +22,7 @@ new p5(function(s) {
         std_eqn = document.querySelector('#standard-form');
         exp_eqn = document.querySelector('#exp-form');
 
+        // btn to change between std and exp form
         btn = document.querySelector('#complex-btn');
         btn.addEventListener('click', () => {
             if (std_form) {
@@ -50,18 +51,23 @@ new p5(function(s) {
             length = s.width*factor;
         }
 
+        // setup plane
         vv = VectorViz.init('2D', 'RIGHT', s);
         real_ax = vv.createVector(s.createVector(s.width*factor), 'white');
         im_ax = vv.createVector(s.createVector(0, s.height*factor), 'white');
 
+        // complex number z
         z = vv.createVector(s.createVector(50, 50), '#5D9CEA', false);
 
+        // trackers for real and imag part in std form 
         real = vv.createVector(s.createVector(-z.vector.x, 0), '#5D9CEA', false);
         imag = vv.createVector(s.createVector(0, -z.vector.y), '#5D9CEA', false);
 
+        // real and imag part in the dom eqn
         dom_real = document.querySelector('#real-part');
         dom_im = document.querySelector('#im-part');
 
+        // abs and arg in the dom eqn 
         dom_abs = document.querySelector('#abs');
         dom_arg = document.querySelector('#arg');
     }
@@ -74,6 +80,7 @@ new p5(function(s) {
         vv.setFont('assets/posts/bloch-sphere/latinmodern-math.otf');
         s.textSize(20);
 
+        // draw axes 
         s.push();
         s.translate(-s.width*0.4, 0);
         real_ax.draw();
@@ -83,16 +90,19 @@ new p5(function(s) {
         im_ax.label('Im');
         s.pop();
 
+        // circle identifying z
         s.noStroke();
         s.fill(z.color);
         s.circle(z.vector.x, z.vector.y, 5);
         z.label('z');
 
         s.push();
+        // draw std form real and imag 
         if (std_form) {
             s.translate(z.vector);
             real.draw();
             imag.draw();
+        // draw exp form and angle arc 
         } else {
             z.draw();
             let pos_angle = z.vector.heading();
@@ -111,20 +121,19 @@ new p5(function(s) {
                 z.vector = coords3;
             }
 
-            if (std_form) {
-                // TODO: place in btn callback
-                dom_real.innerText = Math.round(z.vector.x);
-                dom_im.innerText = Math.round(z.vector.y);
-                real.vector.x = -z.vector.x;
-                imag.vector.y = -z.vector.y;
-            } else {
-                dom_abs.innerText = Math.round(z.vector.mag());
-                let pos_angle = z.vector.heading();
-                if (pos_angle < 0) {
-                    pos_angle = s.PI + (s.PI + pos_angle);
-                }
-                dom_arg.innerText = pos_angle.toFixed(3);
+            // update std form variables
+            dom_real.innerText = Math.round(z.vector.x);
+            dom_im.innerText = Math.round(z.vector.y);
+            real.vector.x = -z.vector.x;
+            imag.vector.y = -z.vector.y;
+
+            // update exp form variables 
+            dom_abs.innerText = Math.round(z.vector.mag());
+            let pos_angle = z.vector.heading();
+            if (pos_angle < 0) {
+                pos_angle = s.PI + (s.PI + pos_angle);
             }
+            dom_arg.innerText = pos_angle.toFixed(3);
         }
     }
 

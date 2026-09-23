@@ -35,6 +35,11 @@
         <script data-goatcounter="https://diamond.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     {% endif %}
+
+    <!-- stylesheets -->
+    {% for stylesheet in page.css %}
+        <link rel="stylesheet" href="{{ stylesheet }}">
+    {% endfor %}
       
     <!-- load any required external libraries -->
     {% for name in page.libs %}
