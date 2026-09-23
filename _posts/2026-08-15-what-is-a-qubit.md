@@ -4,6 +4,8 @@ image: https://assets-bethdiamond.netlify.app/posts/bloch-sphere/qubit-header.pn
 tags: science physics SoME5
 libs:
     - mathjax
+css:
+    - assets/posts/bloch-sphere/bloch-sphere.css
 imports:
     p5: "https://cdn.jsdelivr.net/npm/p5@2.2.3/+esm"
 scripts:
@@ -75,6 +77,7 @@ Something you'll notice is that when $$\ket{\psi}$$ is in an eigenstate (that is
 
 Finally, you probably noticed that the values of $$a$$ and $$b$$ are never greater than 1. This is due to what $$a$$ and $$b$$ represent _physically_. We know that $$\ket{\psi}$$ must always collapse into an eigenstate upon measurement - $$a$$ and $$b$$ actually tell us the **probability** of $$\ket{\psi}$$ collapsing into either $$\ket{0}$$ or $$\ket{1}$$. This means that the 'closer' $$\ket{\psi}$$ is to $$\ket{0}$$ or $$\ket{1}$$, the **higher the probability** of measuring it in that state. [The Born rule][born] is a postulate of quantum mechanics that says that, specifically, the probability is given by the size of these values squared:
 
+<!-- TODO: Centre these: -->
 Probability of measuring $$\ket{0} = \lvert a \rvert^{2}$$
 
 Probability of measuring $$\ket{1} = \lvert b \rvert^{2}$$
@@ -326,65 +329,10 @@ This way, when $$\gamma$$ gets to 90°, $$\theta$$ reaches all the way to 180, f
 
 ![]({{site.assets}}/posts/bloch-sphere/bloch-sphere-full.png)
 
-We just need to be careful to divide by 2 agian when writing out $$\ket{\psi}$$:
+We just need to be careful to divide by 2 again when writing out $$\ket{\psi}$$:
 
 $$\ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\phi}\sin\frac{\theta}{2} \ket{1}$$
 
 
 [born]: https://en.wikipedia.org/wiki/Born_rule
 [func-vec]: https://thenumb.at/Functions-are-Vectors
-
-<style>
-    .real-basis, .complex-form {
-        display: block;
-        margin: 1rem;
-        text-align: center;
-        font-size: 1.5rem;
-    }
-
-    figure {
-        margin: 2rem auto;
-        border-left: 0.5rem solid var(--accent-color);
-    }
-
-    figure mjx-container[jax="CHTML"][display="true"] {
-        display: inline;
-    }
-    figcaption {
-        margin: 2rem;
-        margin-left: 1rem;
-        font-style: italic;
-    }
-
-    canvas {
-        display: block;
-        margin: 1rem auto;
-    }
-
-    figure#complex-plane {
-        position: relative;
-    }
-    #complex-btn {
-        all: revert;
-        position: absolute;
-        left: 1rem;
-        top: 2rem;
-    }
-
-    figure #eigenfunctions {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-    }
-
-    #eigenfunctions canvas {
-        margin: 0;
-    }
-    #wavefunction > canvas {
-        margin: 0 auto;
-    }
-
-    .complex-form#exp-form {
-        display: none;
-    }
-</style>
