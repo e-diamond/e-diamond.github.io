@@ -1,6 +1,6 @@
 ---
 title: "So what is a Qubit, anyway?"
-image: assets/posts/bloch-sphere/img/qubit-header.png
+image: https://assets-bethdiamond.netlify.app/posts/bloch-sphere/qubit-header.png
 tags: science physics SoME5
 libs:
     - mathjax
@@ -93,11 +93,11 @@ Because of their relation to probability, we call $$a$$ and $$b$$ **probability 
 
 If you've ever studied some quantum mechanics, you've probably met $$\psi$$ before, but you may not have met it as the vector $$\ket{\psi}$$. In fact, most people are introduced to $$\psi$$ as the **wavefunction**, $$\psi(x)$$. As it's a function, we can plot it. You might have seen it look something like one of these:
 
-![Three possible eigenstates of a qubit. They are all different frequencies of sine waves.](assets/posts/bloch-sphere/img/1d-wavefunctions.png)
+![Three possible eigenstates of a qubit. They are all different frequencies of sine waves.]({{site.assets}}/posts/bloch-sphere/1d-wavefunctions.png)
 
 Or maybe something a little more realistic, with more dimensions, like this: 
 
-![](assets/posts/bloch-sphere/img/2d-wavefunctions.png)
+![]({{site.assets}}/posts/bloch-sphere/2d-wavefunctions.png)
 
 Of course, exactly what the plot $$\psi(x)$$ looks like will be different depending on which physical system our qubit is constructed from, but it will always be made up of a linear combination (a superposition) of **eigenfunctions**.
 
@@ -107,7 +107,7 @@ Yes! In fact, the function $$\psi(x)$$ _is_ the vector $$\ket{\psi}$$. I'll say 
 
 Naturally then, it follows that the eigenstates $$\ket{0}$$ and $$\ket{1}$$ can also be drawn as functions. Here is an example of two possible energy eigenstates - a ground state, and an excited state:
 
-![energy eigenfunctions](assets/posts/bloch-sphere/img/energy-eigenstates.png)
+![energy eigenfunctions]({{site.assets}}/posts/bloch-sphere/energy-eigenstates.png)
 
 You'll notice that these functions are waves. With amplitudes! In fact, when we combine $$\ket{0}$$ and $$\ket{1}$$ to create $$\ket{\psi}$$, $$a$$ and $$b$$ in this equation:
 
@@ -138,19 +138,19 @@ This of course means that $$a$$ and $$b$$, their amplitudes, must rotate. But ho
 
 Well, perhaps a single **real** number won't do it. The real numbers are the ones that lay on the number line, like this:
 
-![A number line that runs from -3 to 3.](assets/posts/bloch-sphere/img/number-line.png)
+![A number line that runs from -3 to 3.]({{site.assets}}/posts/bloch-sphere/number-line.png)
 
 Using the real numbers, there _is_ one _specific_ kind of rotation we can do - a rotation of 180°. We do this by flipping the sign, which is what happens when we multiply by **-1**. 
 
-![](assets/posts/bloch-sphere/img/number-line-rotate.png)
+![]({{site.assets}}/posts/bloch-sphere/number-line-rotate.png)
 
 But, in order to see a rotation by any other angle, we need at least 2 dimensions - more than just the single dimension that the real number line gives us. The special number $$i$$ is a number that rotates by 90° when we multiply by it. Because two 90° rotations make a 180° rotation, we know that multiplying by $$i$$ twice is the same as multiplying by -1, so therefore $$i^2 = -1$$, or $$i = \sqrt{-1}$$.
 
-![](assets/posts/bloch-sphere/img/number-line-i.png)
+![]({{site.assets}}/posts/bloch-sphere/number-line-i.png)
 
 $$i$$ is what we call an **imaginary number**. Because multiplying by imaginary numbers rotates by 90°, we can visualise them as laying on an 'imaginary' number line perpendicular to the real number line. We can now use these two number lines to describe a set of **2-dimensional** numbers which we can use for our rotations - we call these the **complex numbers**.
 
-![](assets/posts/bloch-sphere/img/number-line-imaginary.png)
+![]({{site.assets}}/posts/bloch-sphere/number-line-imaginary.png)
 
 **Complex numbers** are numbers that have a **real** component and an **imaginary** component. We could write some complex number $$z$$ like this:
 
@@ -276,7 +276,7 @@ This gets us down to just 3 dimensions. We can have the z-axis representing the 
 
 <!-- <figure id="bloch-3d">
 </figure> -->
-![](assets/posts/bloch-sphere/img/bloch-3d.png)
+![]({{site.assets}}/posts/bloch-sphere/bloch-3d.png)
 
 ### The... Sphere?
 
@@ -286,7 +286,7 @@ So, there we have it. The Bloch sphere:
 
 <!-- <figure id="bloch-hemisphere">
 </figure> -->
-![](assets/posts/bloch-sphere/img/bloch-hemisphere.png)
+![]({{site.assets}}/posts/bloch-sphere/bloch-hemisphere.png)
 
 Hang on, that can't be right. That's only half a sphere! What's going on?
 
@@ -296,13 +296,13 @@ So, why is it the Bloch sphere, then? Why not just name it the Bloch hemisphere 
 
 The problem is, it actually _is_, topologically, a sphere! How? Let's take a look at a qubit that lays entirely in the $$\ket{0}$$ state:
 
-![](assets/posts/bloch-sphere/img/hemisphere-0.png)
+![]({{site.assets}}/posts/bloch-sphere/hemisphere-0.png)
 
 It points straight up, right? This means that the state $$\ket{\psi} = \ket{0}$$ only has a single representation on the Bloch sphere, no matter what the value of $$\phi$$ is. This is how it should be, as when a qubit lays entirely in an eigenstate there is no relative phase, as the other component goes to 0.
 
 Now look at a qubit that lays entirely in the $$\ket{1}$$ state:
 
-![](assets/posts/bloch-sphere/img/hemisphere-1.png)
+![]({{site.assets}}/posts/bloch-sphere/hemisphere-1.png)
 
  It should be the same as in the $$\ket{0}$$ state, independent of $$\phi$$, but in this pseudo-Bloch hemisphere it _isn't_. Instead, we have this entire circle of states all representing the same _physical_ state, $$\ket{\psi} = \ket{1}$$. This whole circle should be collapsed to a single point, as it all represents a single state.
 
@@ -314,7 +314,7 @@ Now look at a qubit that lays entirely in the $$\ket{1}$$ state:
 
 So how do we get our sphere? First, as we're working with a sphere,let's alter our equation for $$\ket{\psi}$$ slightly to use spherical coordinates. This involves rewriting $$r_a$$ and $$r_b$$ in terms of the angle that $$\ket{\psi}$$ makes with the z axis, which we'll call $$\gamma$$:
 
-![](assets/posts/bloch-sphere/img/hemisphere.png)
+![]({{site.assets}}/posts/bloch-sphere/hemisphere.png)
 
 This means we can write $$\ket{\psi}$$ as:
 
@@ -324,7 +324,7 @@ Because we're just rewriting what we already had, the angle $$\gamma$$ will only
 
 This way, when $$\gamma$$ gets to 90°, $$\theta$$ reaches all the way to 180, forming a sphere. This also means that the entire $$\ket{1}$$ plane collapses to a single point opposite that of $$\ket{0}$$ on the z-axis, exactly like we wanted!:
 
-![](assets/posts/bloch-sphere/img/bloch-sphere-full.png)
+![]({{site.assets}}/posts/bloch-sphere/bloch-sphere-full.png)
 
 We just need to be careful to divide by 2 agian when writing out $$\ket{\psi}$$:
 
