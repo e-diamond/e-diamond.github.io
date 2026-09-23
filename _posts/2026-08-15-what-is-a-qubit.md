@@ -17,6 +17,8 @@ scripts:
     #  - assets/posts/bloch-sphere/bloch-3d.js
     #  - assets/posts/bloch-sphere/bloch-hemisphere.js
      - assets/posts/bloch-sphere/circle-1.js
+    
+featured: true
 ---
 
 A **bit** is the smallest unit of information that there is. On or off. A 0 or a 1. Classical computers, like the kind you and I have, can be thought of as machines that manipulate lots of these bits in order to do useful stuff (or, at least stuff that you want it to do - you can be the judge of whether that's useful or not). 
