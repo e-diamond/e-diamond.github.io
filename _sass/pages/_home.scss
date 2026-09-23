@@ -118,14 +118,14 @@ section#about-me {
 
 
 // the featured posts section
-section#featured-posts {
+section#recent-posts {
     ul {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
         gap: 1rem;
     }
 }
-.featured-post {
+.recent-post {
     position: relative;
     min-height: 10rem;
     padding: 0.5rem 1rem;
