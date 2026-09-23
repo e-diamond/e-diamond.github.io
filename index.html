@@ -37,6 +37,24 @@ scripts:
             {{ about | markdownify }}
         </div>
     </section>
+    <section class="home-section" id="featured-posts">
+        <h2>Featured Posts</h2>
+        {% for post in site.posts %}
+            {% if post.featured %}
+                <li class="featured-post">
+                    <div class="featured-desc">
+                        <h3>
+                            <a target="_blank" href="{{ post.url }}">{{ post.title }}</a>
+                        </h3>
+                        <p>
+                            {{ post.excerpt }}
+                        </p>
+                    </div>
+                    <img src="{{ post.image }}" aria-hidden>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </section>
     <section class="home-section" id="projects">
         <h2>Projects</h2>
         <ul>
@@ -55,8 +73,8 @@ scripts:
         {% endfor %}
         </ul>
     </section>
-    <section class="home-section" id="recent-posts">
-        <h2>Featured Posts</h2>
+    <!-- <section class="home-section" id="recent-posts">
+        <h2>Recent Posts</h2>
         <ul>
             {% for post in site.posts %}
                 <li class="recent-post"
@@ -68,7 +86,7 @@ scripts:
                 </li>
             {% endfor %}
         </ul>
-    </section>
+    </section> -->
 </main>
 
 <button id="play-pause-btn" class="js-only" type="button" title="Pause Animation"
