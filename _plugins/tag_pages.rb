@@ -30,7 +30,8 @@ module TagPages
         @data = {
           'title' => tag,
           'collection' => @dir,
-          'tagged_posts' => posts
+          'tagged_posts' => posts,
+          'libs' => ['mathjax']
         }
   
         # Look up front matter defaults scoped to type `tagpages`, if given key
